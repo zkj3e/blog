@@ -31,7 +31,7 @@ export default function Layout({ children }: LayoutProps) {
       <header className="sticky top-0 z-10 border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur">
         <div className="max-w-4xl mx-auto px-5 py-3 flex items-center gap-6">
           <Link to="/" className="font-bold text-lg text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 no-underline">
-            技术博客
+            Echo's Blog
           </Link>
           <nav className="flex gap-5 flex-1">
             <Link to="/" className="text-sm text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">

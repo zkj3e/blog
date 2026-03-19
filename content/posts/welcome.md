@@ -1,5 +1,5 @@
 ---
-title: 欢迎来到技术博客
+title: 使用指南
 date: 2025-03-19
 category: misc
 excerpt: 这是一篇示例文章，后续只需在 content/posts 下新增 .md 文件并执行构建即可发布。
