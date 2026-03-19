@@ -1,0 +1,10 @@
+[
+  {
+    "slug": "welcome",
+    "title": "欢迎来到技术博客",
+    "date": "2025-03-19T00:00:00.000Z",
+    "category": "misc",
+    "excerpt": "这是一篇示例文章，后续只需在 content/posts 下新增 .md 文件并执行构建即可发布。",
+    "content": "<h2>使用方式</h2>\n<ol>\n<li>在 <code>content/posts</code> 目录下新建 <code>.md</code> 文件。</li>\n<li>在文件顶部填写 frontmatter：<ul>\n<li><code>title</code>: 标题</li>\n<li><code>date</code>: 日期（如 2025-03-19）</li>\n<li><code>category</code>: 分类 id（与 <code>content/categories.json</code> 中的 id 一致）</li>\n<li><code>excerpt</code>: 可选，列表摘要</li>\n</ul>\n</li>\n<li>执行 <code>npm run build</code> 后部署即可。</li>\n</ol>\n<h2>扩展分类</h2>\n<p>在 <code>content/categories.json</code> 中新增一项，例如：</p>\n<pre><code class=\"language-json\">{\n  &quot;id&quot;: &quot;ai&quot;,\n  &quot;name&quot;: &quot;AI&quot;,\n  &quot;description&quot;: &quot;人工智能与机器学习&quot;\n}\n</code></pre>\n<p>然后在文章 frontmatter 中设置 <code>category: ai</code> 即可。</p>\n<p>支持 <strong>Markdown</strong> 与 <code>代码</code> 以及 GFM 表格等。</p>\n<table>\n<thead>\n<tr>\n<th>列1</th>\n<th>列2</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>A</td>\n<td>B</td>\n</tr>\n</tbody></table>\n<p>祝写作愉快。</p>\n"
+  }
+]
