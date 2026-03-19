@@ -1,0 +1,12 @@
+---
+description: React 与 TSX 组件约定
+globs: src/**/*.tsx
+alwaysApply: false
+---
+
+# React / TSX
+
+- 使用函数组件，类型从 `@/types` 或 `../types` 引入（如 `Category`、`Post`）。
+- 页面级数据用 `useState` + `useEffect` 请求 `getPosts()`、`getCategories()`、`getPostBySlug(slug)` 等，注意处理 loading 与空数据。
+- 样式一律用 Tailwind 工具类，不新增全局 CSS 类名；深色用 `dark:` 前缀。
+- 路由参数用 `useParams<{ id: string }>()` 或 `useParams<{ slug: string }>()`，使用前做存在性判断（如 `if (!id) return`）。

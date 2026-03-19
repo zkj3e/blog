@@ -1,0 +1,11 @@
+---
+description: 内容构建脚本约定
+globs: scripts/**/*.ts
+alwaysApply: false
+---
+
+# 构建脚本 (scripts/)
+
+- `build-content.ts`：读取 `content/posts/*.md` 与 `content/categories.json`，输出到 `public/data/`。
+- 使用 ESM（`import`），类型在脚本内定义或与 `src/types` 对齐；不依赖 `src` 的运行时代码。
+- 文章 frontmatter 解析用 gray-matter，正文转 HTML 用 marked；输出字段与 `Post` 类型一致：`slug`、`title`、`date`、`category`、`excerpt`、`content`。

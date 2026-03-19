@@ -1,0 +1,11 @@
+---
+description: TypeScript 与数据层约定
+globs: src/**/*.ts
+alwaysApply: false
+---
+
+# TypeScript 与数据
+
+- 保持 `strict`，为异步返回值写清类型（如 `Promise<Post[]>`、`Promise<Post | null>`）。
+- 与文章/分类相关的类型定义在 `src/types/index.ts`，`src/data.ts` 的返回类型与之一致。
+- 请求使用 `import.meta.env.BASE_URL` 拼 base，路径为 `data/posts.json`、`data/categories.json`。

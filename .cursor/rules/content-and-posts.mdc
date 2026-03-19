@@ -1,0 +1,39 @@
+---
+description: 新增文章与扩展分类的约定
+globs: content/**/*
+alwaysApply: false
+---
+
+# 内容与文章
+
+## 新增文章
+
+1. 在 `content/posts/` 下新建 `.md` 文件。
+2. 顶部必须写 frontmatter（YAML）：
+
+```yaml
+---
+title: 文章标题
+date: 2025-03-19
+category: frontend
+excerpt: 可选，列表摘要
+slug: 可选，默认用文件名
+---
+```
+
+3. `category` 的值必须是 `content/categories.json` 里某一项的 `id`。
+4. 正文使用标准 Markdown（含 GFM），构建时由 marked 转 HTML。
+
+## 扩展分类
+
+在 `content/categories.json` 中追加一项：
+
+```json
+{
+  "id": "ai",
+  "name": "AI",
+  "description": "可选描述"
+}
+```
+
+新文章的 frontmatter 里写 `category: ai` 即可。无需改前端代码。

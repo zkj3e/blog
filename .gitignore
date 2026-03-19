@@ -1,6 +1,8 @@
-_site
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
-vendor
-Gemfile.lock
+node_modules
+dist
+.DS_Store
+*.log
+.env
+.env.local
+.env.*.local
+.env.production

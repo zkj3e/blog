@@ -1,0 +1,25 @@
+---
+description: 技术博客项目结构与技术栈
+alwaysApply: true
+---
+
+# 技术博客项目
+
+## 技术栈
+
+- **前端**: React 18 + TypeScript + Vite 5
+- **样式**: Tailwind CSS 3，深色模式使用 `class`（在根元素切换 `dark`）
+- **路由**: React Router 6，路径 `/`、`/category/:id`、`/post/:slug`
+- **内容**: 构建时由 `scripts/build-content.ts` 读取 `content/` 生成 `public/data/posts.json`、`public/data/categories.json`
+
+## 目录约定
+
+- `content/posts/*.md`：文章，frontmatter 含 `title`、`date`、`category`、可选 `excerpt`、`slug`
+- `content/categories.json`：分类列表，每项 `id`、`name`、可选 `description`
+- `src/types/index.ts`：全局类型 `Category`、`Post`
+- `src/data.ts`：请求 `/data/*.json` 的 API，返回类型与 `src/types` 一致
+
+## 构建与脚本
+
+- `npm run content`：仅生成 content 数据到 `public/data/`
+- `npm run build`：先 content 再 `vite build`，并复制 `index.html` 为 `404.html` 以支持 GitHub Pages SPA
