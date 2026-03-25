@@ -4,6 +4,12 @@ export interface Category {
   description?: string;
 }
 
+export interface PostTocItem {
+  depth: number;
+  text: string;
+  id: string;
+}
+
 export interface Post {
   slug: string;
   title: string;
@@ -11,4 +17,5 @@ export interface Post {
   category: string;
   excerpt: string;
   content: string;
+  toc: PostTocItem[];
 }
