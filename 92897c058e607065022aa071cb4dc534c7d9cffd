@@ -1,0 +1,1181 @@
+scripts/build-content.test.ts
+  7eb20c1fc4c38781 1-50
+scripts/content-pipeline.ts
+  7eb20c1fc4c38781 1-163
+scripts/build-content.ts
+  7eb20c1fc4c38781 3,5-6,8-9
+src/pages/Post.tsx
+  7eb20c1fc4c38781 1,34
+src/main.tsx
+  7eb20c1fc4c38781 4-5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.6",
+  "base_commit_sha": "92897c058e607065022aa071cb4dc534c7d9cffd",
+  "prompts": {
+    "7eb20c1fc4c38781": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d98f8-0216-7621-a35e-c98be8f42556",
+        "model": "gpt-5.4"
+      },
+      "human_author": "zengkejie <zengkejie@bigo.sg>",
+      "messages": [
+        {
+          "type": "user",
+          "text": "<environment_context>\n  <cwd>/Volumes/zkj/personal/blog</cwd>\n  <shell>zsh</shell>\n  <current_date>2026-04-17</current_date>\n  <timezone>Asia/Shanghai</timezone>\n</environment_context>",
+          "timestamp": "2026-04-17T01:08:35.701Z"
+        },
+        {
+          "type": "user",
+          "text": "blo需要支持数学公式 帮忙支持优美的数学公式支持， 并先一个例子里面包括 矩阵乘法的表示  梯度偏微分表示 交叉熵的表示 极大似然估计的表示   正态分布的图示和公式等  做成工具 以后写数学公式相关的blog能方便使用",
+          "timestamp": "2026-04-17T01:08:35.702Z"
+        },
+        {
+          "type": "assistant",
+          "text": "先检查博客项目当前的技术栈和 Markdown/渲染链路，再据此规划“优美数学公式支持”和可复用的写作工具。我会同时读取相关 skill，按它们的流程把方案定到可直接实施的程度。",
+          "timestamp": "2026-04-17T01:08:45.927Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "pwd && rg --files -g 'package.json' -g 'pnpm-lock.yaml' -g 'yarn.lock' -g 'package-lock.json' -g 'astro.config.*' -g 'next.config.*' -g 'vite.config.*' -g 'nuxt.config.*' -g 'gatsby-config.*' -g 'config.*' -g 'tailwind.config.*' -g 'postcss.config.*' -g 'src/**' -g 'content/**' -g 'posts/**' -g 'blog/**'",
+            "max_output_tokens": 5000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:08:45.929Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "sed -n '1,220p' /Users/bigo/.codex/skills/using-superpowers/SKILL.md",
+            "max_output_tokens": 4000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:08:45.931Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "sed -n '1,220p' /Users/bigo/.codex/skills/brainstorming/SKILL.md",
+            "max_output_tokens": 4000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:08:45.933Z"
+        },
+        {
+          "type": "assistant",
+          "text": "我已经确认这是一个 Vite + React 的博客项目，帖子来源在 `content/posts/*.md`，接下来会看渲染组件和样式入口，确认数学公式该接在哪一层。",
+          "timestamp": "2026-04-17T01:08:55.041Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "sed -n '1,220p' package.json",
+            "max_output_tokens": 3000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:08:55.041Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "sed -n '1,260p' src/pages/Post.tsx",
+            "max_output_tokens": 5000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:08:55.059Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "sed -n '1,260p' src/App.tsx",
+            "max_output_tokens": 5000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:08:55.060Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "sed -n '1,260p' src/index.css",
+            "max_output_tokens": 5000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:08:55.060Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "git log --oneline -5",
+            "max_output_tokens": 2000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:08:55.061Z"
+        },
+        {
+          "type": "assistant",
+          "text": "当前文章页是 `marked` 预编译 Markdown 到 HTML，再在 `Post.tsx` 中直接渲染；这意味着数学公式支持最好接在内容构建脚本，而不是页面运行时临时拼。这个方向能同时解决“写作工具化”和样式统一。",
+          "timestamp": "2026-04-17T01:09:01.594Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "rg -n \"build-content|marked|gray-matter|toc|content/posts\" -S .",
+            "max_output_tokens": 5000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:09:01.594Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "sed -n '1,260p' scripts/build-content.ts",
+            "max_output_tokens": 5000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:09:01.594Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "sed -n '1,220p' src/types/index.ts",
+            "max_output_tokens": 3000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:09:01.614Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "sed -n '1,260p' src/data.ts",
+            "max_output_tokens": 5000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:09:01.615Z"
+        },
+        {
+          "type": "assistant",
+          "text": "Some of what we're working on might be easier to explain if I can show it to you in a web browser. I can put together mockups, diagrams, comparisons, and other visuals as we go. This feature is still new and can be token-intensive. Want to try it? (Requires opening a local URL)",
+          "timestamp": "2026-04-17T01:09:03.989Z"
+        },
+        {
+          "type": "user",
+          "text": "是的",
+          "timestamp": "2026-04-17T01:15:17.444Z"
+        },
+        {
+          "type": "assistant",
+          "text": "我先读取可视化协作的说明，然后继续把数学公式支持的设计收敛下来。接下来我会只问一个会影响方案的关键问题。",
+          "timestamp": "2026-04-17T01:15:19.813Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "sed -n '1,240p' /Users/bigo/.codex/skills/brainstorming/visual-companion.md",
+            "max_output_tokens": 4000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:15:20.941Z"
+        },
+        {
+          "type": "assistant",
+          "text": "关键分歧在“以后写公式博客时怎么写最顺手”：我先把这个输入方式定下来，后面的渲染链路和工具形式就能定死。",
+          "timestamp": "2026-04-17T01:15:23.446Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "request_user_input",
+          "input": {
+            "questions": [
+              {
+                "header": "公式写法",
+                "id": "math_authoring_mode",
+                "options": [
+                  {
+                    "description": "直接写 `$...$` 和 `$$...$$`，通用性最好，和大多数博客/笔记系统一致。",
+                    "label": "LaTeX 原生 (Recommended)"
+                  },
+                  {
+                    "description": "正文仍写 `$...$` / `$$...$$`，另外提供常用公式片段模板，减少手敲矩阵、偏导、MLE 等。",
+                    "label": "LaTeX + 公式助手"
+                  },
+                  {
+                    "description": "例如 `:::formula normal-dist` 这类封装块，输入更省事，但可移植性和灵活性较差。",
+                    "label": "自定义短代码"
+                  }
+                ],
+                "question": "你更希望以后在 Markdown 里用哪种方式写数学公式？"
+              }
+            ]
+          },
+          "timestamp": "2026-04-17T01:15:26.660Z"
+        },
+        {
+          "type": "assistant",
+          "text": "我建议用标准 LaTeX 语法，构建期统一渲染；这样未来迁移成本最低，也最适合写技术博客。接下来还需要定“工具”的边界：是只做公式渲染，还是顺手把常用数学块和图示模板一起做成可复用写作资产。",
+          "timestamp": "2026-04-17T01:15:53.057Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "request_user_input",
+          "input": {
+            "questions": [
+              {
+                "header": "工具范围",
+                "id": "math_tool_scope",
+                "options": [
+                  {
+                    "description": "支持 `$`/`$$` 渲染，补一篇示例文章，再提供一个数学写作模板/片段文档，后续直接照着写。",
+                    "label": "渲染 + 模板 (Recommended)"
+                  },
+                  {
+                    "description": "除了公式渲染和模板，再做可复用的正态分布图示组件或约定写法。",
+                    "label": "渲染 + 模板 + 图示组件"
+                  },
+                  {
+                    "description": "先把公式显示做好，示例和工具化先简化。",
+                    "label": "只做渲染"
+                  }
+                ],
+                "question": "你希望这次把“数学工具”做到哪一层？"
+              }
+            ]
+          },
+          "timestamp": "2026-04-17T01:15:55.964Z"
+        },
+        {
+          "type": "assistant",
+          "text": "目前可以把方案收敛成 3 条路，我建议选第 1 条。\n\n1. `marked` 链路上补数学公式预处理 + KaTeX 渲染\n优点：改动最小，继续沿用现在的构建期生成 HTML 流程；写作时直接用 `$...$` / `$$...$$`；样式可控，首屏也快。\n缺点：需要自己在 `scripts/build-content.ts` 里把 Markdown、公式、代码高亮之间的处理顺序定好。\n\n2. 把内容构建升级成更完整的 Markdown 管线\n优点：以后扩展公式、脚注、引用块、自定义容器会更系统。\n缺点：对现在这个项目来说偏重，迁移成本比需求本身大。\n\n3. 运行时再渲染数学公式\n优点：接入快。\n缺点：文章页会多一次前端处理，SEO、稳定性、样式一致性都不如构建期方案。\n\n我推荐第 1 条：保留现在的架构，只在构建脚本里接入数学渲染，并补一套“数学写作模板”。\n\n**设计草案**\n- 写作语法：以后文章统一使用标准 LaTeX，行内公式 `$...$`，块级公式 `$$...$$`。\n- 渲染方式：在构建期把公式转成 KaTeX HTML，这样文章 JSON 里就是最终可展示内容。\n- 样式目标：正文里公式居中、行内公式不突兀、长公式可横向滚动、深浅色下都清晰。\n- 工具化产物：新增一篇完整示例文章，覆盖你提到的矩阵乘法、梯度偏微分、交叉熵、极大似然估计、正态分布公式；再补一个可复用的数学写作模板，后续新文章直接复制。\n- 正态分布图示：先做成文章内可复用的静态 SVG/HTML 图示模板，而不是单独做 React 组件。这样写博客最轻，维护成本也最低。\n\n如果这个方向对，我下一条会把“具体要加什么能力、示例文章怎么组织、需要验证哪些场景”细化成可直接实施的完整计划。",
+          "timestamp": "2026-04-17T01:16:13.976Z"
+        },
+        {
+          "type": "user",
+          "text": "以后我要写很多数学和机器学习相关的文章， 建议用哪种方案",
+          "timestamp": "2026-04-17T01:19:17.713Z"
+        },
+        {
+          "type": "assistant",
+          "text": "如果你以后会持续写数学和机器学习文章，建议直接走“更完整的 Markdown 内容管线”，不要只在 `marked` 上做最小补丁。\n\n原因很直接：\n- 你后面大概率不只要公式，还会逐步需要定理块、proof、脚注、引用、warning/info 提示块、图片说明、表格增强、交叉引用这些能力。\n- 机器学习文章里常见的内容组合很多：公式 + 代码 + 图 + 表 + 推导步骤。临时在 `marked` 上不断打补丁，后面维护会越来越脆。\n- 标准化内容管线更适合长期积累模板，后续你写新文章时可以稳定复用，不会每次碰到一个新写法就修一次构建脚本。\n\n我建议的长期方案是：\n- 保留现在“构建期生成 HTML/JSON”的总体思路。\n- 但把内容处理升级成基于 `remark` / `rehype` 的 Markdown 管线。\n- 数学公式用 `remark-math` + `rehype-katex`。\n- 继续保留代码高亮、目录生成、标题锚点这些能力。\n- 再补一套机器学习写作模板，专门覆盖公式块、定理/定义块、推导步骤、图表说明。\n\n这样做的结果是：\n- 写作体验上，你以后只需要写标准 Markdown + LaTeX。\n- 展示效果上，公式会稳定、优雅，而且适合长期扩展。\n- 工程上，比现在多一点重构，但这是一次性成本，后面会省很多时间。\n\n如果只看你当前这个项目的规模，我会给两个建议：\n- 短期最快可落地：`marked` 上补 KaTeX。\n- 长期最值得：升级到 `remark/rehype` 内容管线。\n\n考虑到你明确说“以后要写很多数学和机器学习相关的文章”，我推荐长期方案，也就是第二种。\n\n接下来我只需要你确认一个偏好：你要“现在一次性按长期方案做对”，还是“先快速接入 KaTeX，后面再升级内容管线”？",
+          "timestamp": "2026-04-17T01:19:30.427Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "request_user_input",
+          "input": {
+            "questions": [
+              {
+                "header": "实施节奏",
+                "id": "rollout_preference",
+                "options": [
+                  {
+                    "description": "现在就把内容管线升级到更适合长期写数学/ML 文章的方案，后续维护最省心。",
+                    "label": "一次做长期方案 (Recommended)"
+                  },
+                  {
+                    "description": "先在现有 marked 链路上支持公式渲染和示例文章，后续再考虑升级。",
+                    "label": "先快速接入"
+                  },
+                  {
+                    "description": "先把长期方案和过渡方案都设计清楚，再决定是否立即升级。",
+                    "label": "分两步设计"
+                  }
+                ],
+                "question": "这次你希望按哪个节奏推进？"
+              }
+            ]
+          },
+          "timestamp": "2026-04-17T01:19:32.279Z"
+        },
+        {
+          "type": "assistant",
+          "text": "那就定长期方案：把现在的内容构建从 `marked` 为主，升级成适合长期写数学/机器学习文章的 `remark` / `rehype` 管线。\n\n它比“只给 `marked` 打公式补丁”更适合你的原因是：\n- 公式只是第一步，后面你大概率会要定义、定理、证明、提示、参考文献、图表说明这类学术写作能力。\n- 机器学习文章常常混合公式、代码、表格、图示和推导，标准内容管线更稳，不会越补越乱。\n- 以后写作时仍然只用标准 Markdown + LaTeX，迁移性和复用性都更好。\n\n我接下来会按这个方向出完整实施计划，内容会包括：\n- 数学渲染链路怎么接入\n- 目录、锚点、代码高亮如何保留\n- 示例文章如何组织\n- “数学写作模板/工具”具体做成什么样\n- 需要验证的边界场景和验收标准",
+          "timestamp": "2026-04-17T01:20:31.017Z"
+        },
+        {
+          "type": "user",
+          "text": "好的",
+          "timestamp": "2026-04-17T01:20:59.260Z"
+        },
+        {
+          "type": "assistant",
+          "text": "<proposed_plan>\n# 博客长期数学/机器学习写作支持方案\n\n## Summary\n将当前基于 `marked` 的内容构建升级为基于 `remark` / `rehype` 的 Markdown 管线，在构建期完成数学公式、标题锚点、目录和代码高亮的统一处理。写作侧统一采用标准 Markdown + LaTeX 语法，补一篇完整的数学/ML 示例文章，并提供一份可复用的数学写作模板，作为以后写相关博客的基础工具。\n\n## Key Changes\n- 内容构建链路从 `scripts/build-content.ts` 中的 `marked` 解析，升级为 `remark-parse` + `remark-math` + `remark-gfm` + `remark-rehype` + `rehype-katex` + `rehype-highlight`/现有高亮兼容方案。\n- 目录和标题锚点继续在构建期生成，保持现有 `Post.toc` 结构不变，避免前端页面和数据消费接口发生破坏性变化。\n- 文章内容输出仍写入 `public/data/posts.json`，字段保持 `slug/title/date/category/excerpt/content/toc`，其中 `content` 改为新管线产出的 HTML。\n- 全站数学排版样式在 [`src/index.css`](/Volumes/zkj/personal/blog/src/index.css) 中补齐：\n  行内公式与正文基线对齐；\n  块级公式居中、上下留白更稳定；\n  超长公式允许横向滚动；\n  深浅色主题下 KaTeX 颜色和边距一致；\n  公式与代码块、表格、引用块共存时不互相污染样式。\n- 文章页 [`src/pages/Post.tsx`](/Volumes/zkj/personal/blog/src/pages/Post.tsx) 只保留必要的代码高亮初始化；如果新管线已在构建期完成高亮，则移除运行时 `highlight.js` 依赖和对应副作用。\n- 新增一篇数学能力示例文章，覆盖这些内容：\n  矩阵乘法表示；\n  梯度与偏微分表示；\n  交叉熵表示；\n  极大似然估计表示；\n  正态分布公式；\n  正态分布图示。\n- “工具化”做成写作资产而不是运行时代码组件：\n  新增一份数学写作模板文档或模板文章；\n  汇总常用 LaTeX 片段和推荐写法；\n  约定图示写法，优先使用 Markdown 可嵌入的静态 SVG 或标准图片资源，避免引入文章专用 React 组件。\n\n## Public Interfaces / Authoring Contract\n- 以后文章作者统一使用：\n  行内公式：`$...$`\n  块级公式：`$$...$$`\n- 保持现有 frontmatter 约定不变：`title`、`date`、`category`、`excerpt`、可选 `slug`。\n- 追加内容层约定：\n  普通 Markdown、GFM 表格、代码块、数学公式可以混写；\n  数学公式不在 fenced code block 内解析；\n  标题文本中的纯文本内容继续用于生成目录项和锚点。\n- 如果需要为正态分布图示提供通用素材，优先新增一个静态资源模板而非新的页面 API。\n\n## Example / Tool Deliverables\n- 新增一篇示例文章，结构建议为：\n  数学排版总览；\n  线性代数示例；\n  微积分与梯度示例；\n  概率与统计示例；\n  损失函数与极大似然示例；\n  图示示例与写作建议。\n- 新增一份“数学写作模板”，包含可直接复制的章节骨架：\n  问题定义；\n  符号说明；\n  核心公式；\n  推导过程；\n  图表说明；\n  小结。\n- 模板中附常用片段：\n  矩阵与向量；\n  偏导与梯度；\n  期望、方差、协方差；\n  softmax 与交叉熵；\n  MLE；\n  正态分布。\n\n## Test Plan\n- 内容构建成功，`npm run content` 和 `npm run build` 均通过。\n- 现有普通文章渲染不回归：标题、目录、表格、代码块、分类页、文章页均正常。\n- 新增示例文章验证这些场景：\n  行内公式正常显示；\n  块级公式正常显示；\n  长公式不挤坏移动端布局；\n  公式与代码块相邻时样式正常；\n  目录锚点在含公式文章中仍正确工作；\n  正态分布图示在桌面和移动端均可读。\n- 若移除运行时高亮逻辑，需验证代码块高亮效果与现有文章一致，且页面不再依赖客户端二次处理。\n- 手动检查深色/浅色主题下公式颜色、字号、间距是否协调。\n\n## Assumptions\n- 保持当前“Markdown 构建为 `public/data/*.json`，前端 fetch 后渲染”的整体架构，不引入 CMS 或 MDX。\n- 正态分布图示本次按静态图示资产处理，不做交互式图表。\n- 本次不扩展到 theorem/proof/admonition 等学术容器语法，只为后续升级预留更合适的管线基础。\n- 写作工具的目标是“降低以后写数学/ML 文章的重复劳动”，因此优先交付稳定语法、示例文章和模板，而不是额外的 UI 功能。\n</proposed_plan>",
+          "timestamp": "2026-04-17T01:21:25.636Z"
+        },
+        {
+          "type": "user",
+          "text": "PLEASE IMPLEMENT THIS PLAN:\n# 博客长期数学/机器学习写作支持方案\n\n## Summary\n将当前基于 `marked` 的内容构建升级为基于 `remark` / `rehype` 的 Markdown 管线，在构建期完成数学公式、标题锚点、目录和代码高亮的统一处理。写作侧统一采用标准 Markdown + LaTeX 语法，补一篇完整的数学/ML 示例文章，并提供一份可复用的数学写作模板，作为以后写相关博客的基础工具。\n\n## Key Changes\n- 内容构建链路从 `scripts/build-content.ts` 中的 `marked` 解析，升级为 `remark-parse` + `remark-math` + `remark-gfm` + `remark-rehype` + `rehype-katex` + `rehype-highlight`/现有高亮兼容方案。\n- 目录和标题锚点继续在构建期生成，保持现有 `Post.toc` 结构不变，避免前端页面和数据消费接口发生破坏性变化。\n- 文章内容输出仍写入 `public/data/posts.json`，字段保持 `slug/title/date/category/excerpt/content/toc`，其中 `content` 改为新管线产出的 HTML。\n- 全站数学排版样式在 [`src/index.css`](/Volumes/zkj/personal/blog/src/index.css) 中补齐：\n  行内公式与正文基线对齐；\n  块级公式居中、上下留白更稳定；\n  超长公式允许横向滚动；\n  深浅色主题下 KaTeX 颜色和边距一致；\n  公式与代码块、表格、引用块共存时不互相污染样式。\n- 文章页 [`src/pages/Post.tsx`](/Volumes/zkj/personal/blog/src/pages/Post.tsx) 只保留必要的代码高亮初始化；如果新管线已在构建期完成高亮，则移除运行时 `highlight.js` 依赖和对应副作用。\n- 新增一篇数学能力示例文章，覆盖这些内容：\n  矩阵乘法表示；\n  梯度与偏微分表示；\n  交叉熵表示；\n  极大似然估计表示；\n  正态分布公式；\n  正态分布图示。\n- “工具化”做成写作资产而不是运行时代码组件：\n  新增一份数学写作模板文档或模板文章；\n  汇总常用 LaTeX 片段和推荐写法；\n  约定图示写法，优先使用 Markdown 可嵌入的静态 SVG 或标准图片资源，避免引入文章专用 React 组件。\n\n## Public Interfaces / Authoring Contract\n- 以后文章作者统一使用：\n  行内公式：`$...$`\n  块级公式：`$$...$$`\n- 保持现有 frontmatter 约定不变：`title`、`date`、`category`、`excerpt`、可选 `slug`。\n- 追加内容层约定：\n  普通 Markdown、GFM 表格、代码块、数学公式可以混写；\n  数学公式不在 fenced code block 内解析；\n  标题文本中的纯文本内容继续用于生成目录项和锚点。\n- 如果需要为正态分布图示提供通用素材，优先新增一个静态资源模板而非新的页面 API。\n\n## Example / Tool Deliverables\n- 新增一篇示例文章，结构建议为：\n  数学排版总览；\n  线性代数示例；\n  微积分与梯度示例；\n  概率与统计示例；\n  损失函数与极大似然示例；\n  图示示例与写作建议。\n- 新增一份“数学写作模板”，包含可直接复制的章节骨架：\n  问题定义；\n  符号说明；\n  核心公式；\n  推导过程；\n  图表说明；\n  小结。\n- 模板中附常用片段：\n  矩阵与向量；\n  偏导与梯度；\n  期望、方差、协方差；\n  softmax 与交叉熵；\n  MLE；\n  正态分布。\n\n## Test Plan\n- 内容构建成功，`npm run content` 和 `npm run build` 均通过。\n- 现有普通文章渲染不回归：标题、目录、表格、代码块、分类页、文章页均正常。\n- 新增示例文章验证这些场景：\n  行内公式正常显示；\n  块级公式正常显示；\n  长公式不挤坏移动端布局；\n  公式与代码块相邻时样式正常；\n  目录锚点在含公式文章中仍正确工作；\n  正态分布图示在桌面和移动端均可读。\n- 若移除运行时高亮逻辑，需验证代码块高亮效果与现有文章一致，且页面不再依赖客户端二次处理。\n- 手动检查深色/浅色主题下公式颜色、字号、间距是否协调。\n\n## Assumptions\n- 保持当前“Markdown 构建为 `public/data/*.json`，前端 fetch 后渲染”的整体架构，不引入 CMS 或 MDX。\n- 正态分布图示本次按静态图示资产处理，不做交互式图表。\n- 本次不扩展到 theorem/proof/admonition 等学术容器语法，只为后续升级预留更合适的管线基础。\n- 写作工具的目标是“降低以后写数学/ML 文章的重复劳动”，因此优先交付稳定语法、示例文章和模板，而不是额外的 UI 功能。",
+          "timestamp": "2026-04-17T01:21:29.938Z"
+        },
+        {
+          "type": "assistant",
+          "text": "使用 `executing-plans` 和 `test-driven-development` 这两个技能来落地这次改造。我先读取它们并检查当前内容构建、依赖和测试入口，再按最小风险顺序实现。",
+          "timestamp": "2026-04-17T01:21:41.085Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "sed -n '1,240p' /Users/bigo/.codex/skills/executing-plans/SKILL.md",
+            "max_output_tokens": 5000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:21:41.086Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "sed -n '1,260p' /Users/bigo/.codex/skills/test-driven-development/SKILL.md",
+            "max_output_tokens": 5000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:21:41.094Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "git status --short",
+            "max_output_tokens": 2000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:21:41.101Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "ls -la",
+            "max_output_tokens": 3000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:21:41.102Z"
+        },
+        {
+          "type": "assistant",
+          "text": "先把验证骨架补上。我会为内容构建脚本加一个轻量测试入口，先写会失败的测试覆盖公式、目录和代码块输出，再让实现去满足它。",
+          "timestamp": "2026-04-17T01:21:53.083Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "sed -n '1,220p' tsconfig.json",
+            "max_output_tokens": 3000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:21:53.084Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "sed -n '1,220p' README.md",
+            "max_output_tokens": 5000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:21:53.085Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "sed -n '1,220p' content/posts/welcome.md",
+            "max_output_tokens": 3000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:21:53.085Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "sed -n '1,220p' content/posts/ai-skills-practical-guide.md",
+            "max_output_tokens": 3000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:21:53.090Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "sed -n '1,220p' tsconfig.node.json",
+            "max_output_tokens": 3000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:21:59.283Z"
+        },
+        {
+          "type": "assistant",
+          "text": "依赖里目前没有测试入口，也还没有 `remark/rehype` 相关包。我先确认缺口，再补测试和新内容管线；如果装依赖时受限，我会直接发起权限请求，不绕路。",
+          "timestamp": "2026-04-17T01:22:05.163Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "npm ls remark remark-parse remark-math remark-gfm remark-rehype rehype-katex rehype-highlight rehype-stringify unist-util-visit github-slugger",
+            "max_output_tokens": 4000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:22:05.163Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "npm ls tsx",
+            "max_output_tokens": 2000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:22:05.163Z"
+        },
+        {
+          "type": "assistant",
+          "text": "我现在开始落测试和实现骨架。会先加一个针对内容构建的测试文件和 `npm test` 脚本，让“公式、目录、代码高亮、代码块内不误解析公式”这些行为先红灯。",
+          "timestamp": "2026-04-17T01:22:20.113Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "find scripts -maxdepth 2 -type f | sort",
+            "max_output_tokens": 2000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:22:20.114Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "find public -maxdepth 3 -type f | sort",
+            "max_output_tokens": 2000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:22:20.116Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "apply_patch",
+          "input": "*** Begin Patch\n*** Update File: /Volumes/zkj/personal/blog/package.json\n@@\n   \"scripts\": {\n     \"content\": \"tsx scripts/build-content.ts\",\n     \"dev\": \"tsx scripts/build-content.ts && vite\",\n     \"build\": \"tsx scripts/build-content.ts && vite build\",\n+    \"test\": \"node --import tsx --test scripts/**/*.test.ts\",\n     \"postbuild\": \"node -e \\\"require('fs').copyFileSync('dist/index.html','dist/404.html')\\\"\",\n     \"deploy\": \"npm run build && gh-pages -d dist\",\n     \"preview\": \"vite preview\"\n   },\n*** Add File: /Volumes/zkj/personal/blog/scripts/build-content.test.ts\n+import test from 'node:test';\n+import assert from 'node:assert/strict';\n+\n+import { markdownToHtmlWithToc } from './content-pipeline';\n+\n+test('renders math, headings, and code blocks without parsing formulas inside code fences', async () => {\n+  const markdown = `\n+## 梯度下降\n+\n+行内公式 $\\\\nabla_\\\\theta J(\\\\theta)$ 和块级公式：\n+\n+$$\n+\\\\theta_{t+1} = \\\\theta_t - \\\\eta \\\\nabla_\\\\theta J(\\\\theta_t)\n+$$\n+\n+\\`\\`\\`python\n+loss = \"$not_math$\"\n+\\`\\`\\`\n+`;\n+\n+  const { html, toc } = await markdownToHtmlWithToc(markdown);\n+\n+  assert.equal(toc.length, 1);\n+  assert.deepEqual(toc[0], { depth: 2, text: '梯度下降', id: '梯度下降' });\n+  assert.match(html, /katex/);\n+  assert.match(html, /<h2 id=\"梯度下降\">梯度下降<\\/h2>/);\n+  assert.match(html, /class=\"hljs language-python\"/);\n+  assert.match(html, /\\$not_math\\$/);\n+});\n+\n+test('keeps long display math wrapped in a display container and deduplicates heading ids', async () => {\n+  const markdown = `\n+## 正态分布\n+\n+$$\n+p(x \\\\mid \\\\mu, \\\\sigma^2) = \\\\frac{1}{\\\\sqrt{2\\\\pi\\\\sigma^2}} \\\\exp\\\\left(-\\\\frac{(x-\\\\mu)^2}{2\\\\sigma^2}\\\\right)\n+$$\n+\n+## 正态分布\n+`;\n+\n+  const { html, toc } = await markdownToHtmlWithToc(markdown);\n+\n+  assert.deepEqual(\n+    toc.map((item) => item.id),\n+    ['正态分布', '正态分布-1']\n+  );\n+  assert.match(html, /katex-display/);\n+  assert.match(html, /id=\"正态分布-1\"/);\n+});\n*** End Patch\n",
+          "timestamp": "2026-04-17T01:22:35.467Z"
+        },
+        {
+          "type": "assistant",
+          "text": "测试骨架已经加上，下一步先让它按预期失败，确认测试抓到的是“缺少新管线实现”，不是别的拼写错误。",
+          "timestamp": "2026-04-17T01:22:38.135Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "npm test",
+            "max_output_tokens": 5000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:22:38.688Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "write_stdin",
+          "input": {
+            "chars": "",
+            "max_output_tokens": 5000,
+            "session_id": 78089,
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:22:41.569Z"
+        },
+        {
+          "type": "assistant",
+          "text": "红灯符合预期，缺的是新内容管线模块本身。现在开始接入 `remark/rehype`、KaTeX 和构建期高亮；这一步会改构建脚本、文章页、样式和文档。",
+          "timestamp": "2026-04-17T01:22:44.374Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "npm install -D remark remark-parse remark-math remark-gfm remark-rehype rehype-katex rehype-highlight rehype-stringify rehype-slug rehype-autolink-headings unist-util-visit hast-util-to-string github-slugger",
+            "max_output_tokens": 4000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:22:45.977Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "write_stdin",
+          "input": {
+            "chars": "",
+            "max_output_tokens": 4000,
+            "session_id": 22298,
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:22:48.811Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "write_stdin",
+          "input": {
+            "chars": "",
+            "max_output_tokens": 4000,
+            "session_id": 22298,
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:22:55.608Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "write_stdin",
+          "input": {
+            "chars": "\u0003",
+            "max_output_tokens": 4000,
+            "session_id": 22298,
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:23:03.924Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "write_stdin",
+          "input": {
+            "chars": "",
+            "max_output_tokens": 4000,
+            "session_id": 22298,
+            "yield_time_ms": 20000
+          },
+          "timestamp": "2026-04-17T01:23:06.562Z"
+        },
+        {
+          "type": "assistant",
+          "text": "依赖安装在沙箱里卡住了，下一步我直接请求联网安装权限。没有这些包，`remark/rehype` 管线和 KaTeX 没法落地。",
+          "timestamp": "2026-04-17T01:23:29.233Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "npm install -D remark remark-parse remark-math remark-gfm remark-rehype rehype-katex rehype-highlight rehype-stringify rehype-slug rehype-autolink-headings unist-util-visit hast-util-to-string github-slugger",
+            "justification": "Do you want to allow installing the Markdown/math rendering dependencies needed to implement the new blog content pipeline?",
+            "max_output_tokens": 4000,
+            "prefix_rule": [
+              "npm",
+              "install",
+              "-D"
+            ],
+            "sandbox_permissions": "require_escalated",
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:23:31.621Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "write_stdin",
+          "input": {
+            "chars": "",
+            "max_output_tokens": 4000,
+            "session_id": 99511,
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:23:46.768Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "sed -n '1,200p' src/main.tsx",
+            "max_output_tokens": 3000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:24:00.762Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "npm install -D unified",
+            "max_output_tokens": 3000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:24:10.651Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "npm install -D rehype-raw",
+            "max_output_tokens": 3000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:24:29.232Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "write_stdin",
+          "input": {
+            "chars": "",
+            "max_output_tokens": 3000,
+            "session_id": 21342,
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:24:32.056Z"
+        },
+        {
+          "type": "assistant",
+          "text": "我现在改两层：一层把 Markdown 构建重写成可测试的 `content-pipeline` 模块，另一层把 `build-content.ts` 缩成纯 I/O 外壳。这样后面示例文章和模板只依赖稳定的渲染核心。",
+          "timestamp": "2026-04-17T01:24:35.183Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "apply_patch",
+          "input": "*** Begin Patch\n*** Add File: /Volumes/zkj/personal/blog/scripts/content-pipeline.ts\n+import fs from 'fs';\n+import path from 'path';\n+import { fileURLToPath } from 'url';\n+import matter from 'gray-matter';\n+import GithubSlugger from 'github-slugger';\n+import rehypeHighlight from 'rehype-highlight';\n+import rehypeKatex from 'rehype-katex';\n+import rehypeRaw from 'rehype-raw';\n+import rehypeStringify from 'rehype-stringify';\n+import remarkGfm from 'remark-gfm';\n+import remarkMath from 'remark-math';\n+import remarkParse from 'remark-parse';\n+import remarkRehype from 'remark-rehype';\n+import { unified } from 'unified';\n+import { visit } from 'unist-util-visit';\n+\n+export interface CategoryItem {\n+  id: string;\n+  name: string;\n+  description?: string;\n+}\n+\n+export interface TocItem {\n+  depth: number;\n+  text: string;\n+  id: string;\n+}\n+\n+export interface BuildPost {\n+  slug: string;\n+  title: string;\n+  date: string;\n+  category: string;\n+  excerpt: string;\n+  content: string;\n+  toc: TocItem[];\n+}\n+\n+function extractText(node: unknown): string {\n+  if (!node || typeof node !== 'object') return '';\n+\n+  if ('value' in node && typeof node.value === 'string') {\n+    return node.value;\n+  }\n+\n+  if ('children' in node && Array.isArray(node.children)) {\n+    return node.children.map(extractText).join('');\n+  }\n+\n+  if ('alt' in node && typeof node.alt === 'string') {\n+    return node.alt;\n+  }\n+\n+  return '';\n+}\n+\n+function createTocPlugin(toc: TocItem[]) {\n+  return () => (tree: unknown) => {\n+    const slugger = new GithubSlugger();\n+\n+    visit(tree, 'heading', (node: any) => {\n+      if (typeof node.depth !== 'number' || node.depth < 2 || node.depth > 6) {\n+        return;\n+      }\n+\n+      const text = extractText(node).trim() || 'section';\n+      const id = slugger.slug(text);\n+\n+      node.data ??= {};\n+      node.data.hProperties ??= {};\n+      node.data.id = id;\n+      node.data.hProperties.id = id;\n+\n+      if (node.depth <= 4) {\n+        toc.push({ depth: node.depth, text, id });\n+      }\n+    });\n+  };\n+}\n+\n+export async function markdownToHtmlWithToc(markdown: string): Promise<{ html: string; toc: TocItem[] }> {\n+  const toc: TocItem[] = [];\n+\n+  const file = await unified()\n+    .use(remarkParse)\n+    .use(remarkGfm)\n+    .use(remarkMath)\n+    .use(createTocPlugin(toc))\n+    .use(remarkRehype, { allowDangerousHtml: true })\n+    .use(rehypeRaw)\n+    .use(rehypeKatex)\n+    .use(rehypeHighlight, {\n+      ignoreMissing: true,\n+      plainText: ['txt', 'text'],\n+    })\n+    .use(rehypeStringify)\n+    .process(markdown);\n+\n+  return { html: String(file), toc };\n+}\n+\n+export async function buildPosts(postsDir: string): Promise<BuildPost[]> {\n+  const postFiles = fs.existsSync(postsDir)\n+    ? fs.readdirSync(postsDir).filter((file) => file.endsWith('.md'))\n+    : [];\n+\n+  const posts = await Promise.all(\n+    postFiles.map(async (file) => {\n+      const fullPath = path.join(postsDir, file);\n+      const raw = fs.readFileSync(fullPath, 'utf-8');\n+      const { data: frontmatter, content } = matter(raw) as { data: Record<string, string>; content: string };\n+      const slug = frontmatter.slug ?? path.basename(file, '.md');\n+      const { html, toc } = await markdownToHtmlWithToc(content);\n+\n+      return {\n+        slug,\n+        title: frontmatter.title ?? slug,\n+        date: frontmatter.date ?? '',\n+        category: frontmatter.category ?? '',\n+        excerpt: frontmatter.excerpt ?? content.slice(0, 160).replace(/\\n/g, ' '),\n+        content: html,\n+        toc,\n+      };\n+    })\n+  );\n+\n+  posts.sort((a, b) => (b.date < a.date ? -1 : 1));\n+  return posts;\n+}\n+\n+export async function buildContentData(contentDir: string, publicDataDir: string): Promise<{\n+  categories: CategoryItem[];\n+  posts: BuildPost[];\n+}> {\n+  if (!fs.existsSync(publicDataDir)) {\n+    fs.mkdirSync(publicDataDir, { recursive: true });\n+  }\n+\n+  let categories: CategoryItem[] = [];\n+  const categoriesPath = path.join(contentDir, 'categories.json');\n+  if (fs.existsSync(categoriesPath)) {\n+    categories = JSON.parse(fs.readFileSync(categoriesPath, 'utf-8')) as CategoryItem[];\n+  }\n+\n+  fs.writeFileSync(\n+    path.join(publicDataDir, 'categories.json'),\n+    JSON.stringify(categories, null, 2),\n+    'utf-8'\n+  );\n+\n+  const posts = await buildPosts(path.join(contentDir, 'posts'));\n+  fs.writeFileSync(path.join(publicDataDir, 'posts.json'), JSON.stringify(posts, null, 2), 'utf-8');\n+\n+  return { categories, posts };\n+}\n+\n+export async function runBuildContent(): Promise<void> {\n+  const __dirname = path.dirname(fileURLToPath(import.meta.url));\n+  const contentDir = path.join(__dirname, '..', 'content');\n+  const publicDataDir = path.join(__dirname, '..', 'public', 'data');\n+  const { categories, posts } = await buildContentData(contentDir, publicDataDir);\n+  console.log('Content built: %d posts, %d categories', posts.length, categories.length);\n+}\n*** Update File: /Volumes/zkj/personal/blog/scripts/build-content.ts\n@@\n-/**\n- * 构建时脚本：读取 content/posts/*.md 与 content/categories.json，\n- * 输出 public/data/posts.json 供前端使用。\n- */\n-import fs from 'fs';\n import path from 'path';\n import { fileURLToPath } from 'url';\n-import matter from 'gray-matter';\n-import { lexer, walkTokens, Parser, Renderer } from 'marked';\n-import type { Token, Tokens } from 'marked';\n-\n-interface CategoryItem {\n-  id: string;\n-  name: string;\n-  description?: string;\n-}\n-\n-interface TocItem {\n-  depth: number;\n-  text: string;\n-  id: string;\n-}\n-\n-interface BuildPost {\n-  slug: string;\n-  title: string;\n-  date: string;\n-  category: string;\n-  excerpt: string;\n-  content: string;\n-  toc: TocItem[];\n-}\n-\n-function escapeHtmlAttr(value: string): string {\n-  return value.replace(/&/g, '&amp;').replace(/\"/g, '&quot;').replace(/</g, '&lt;');\n-}\n-\n-function slugifyBase(text: string): string {\n-  const base = text\n-    .trim()\n-    .toLowerCase()\n-    .replace(/[^\\p{L}\\p{N}]+/gu, '-')\n-    .replace(/-+/g, '-')\n-    .replace(/^-|-$/g, '');\n-  return base || 'section';\n-}\n-\n-function nextSlugId(base: string, used: Map<string, number>): string {\n-  const n = used.get(base) ?? 0;\n-  used.set(base, n + 1);\n-  return n === 0 ? base : `${base}-${n}`;\n-}\n-\n-/** 正文转 HTML，为 h2–h6 生成锚点 id；目录仅收录 h2–h4 */\n-function markdownToHtmlWithToc(markdown: string): { html: string; toc: TocItem[] } {\n-  const tokens = lexer(markdown);\n-  const headingIds: string[] = [];\n-  const toc: TocItem[] = [];\n-  const used = new Map<string, number>();\n-\n-  walkTokens(tokens, (token: Token) => {\n-    if (token.type !== 'heading') return;\n-    const h = token as Tokens.Heading;\n-    if (h.depth < 2 || h.depth > 6) return;\n-    const id = nextSlugId(slugifyBase(h.text), used);\n-    headingIds.push(id);\n-    if (h.depth <= 4) {\n-      toc.push({ depth: h.depth, text: h.text, id });\n-    }\n-  });\n-\n-  const renderer = new Renderer();\n-  let i = 0;\n-  renderer.heading = function (text: string, level: number, _raw: string) {\n-    if (level >= 2 && level <= 6 && i < headingIds.length) {\n-      const id = headingIds[i++];\n-      return `<h${level} id=\"${escapeHtmlAttr(id)}\">${text}</h${level}>\\n`;\n-    }\n-    return `<h${level}>${text}</h${level}>\\n`;\n-  };\n-\n-  const html = Parser.parse(tokens, { renderer });\n-  return { html, toc };\n-}\n-\n-const __dirname = path.dirname(fileURLToPath(import.meta.url));\n-const contentDir = path.join(__dirname, '..', 'content');\n-const postsDir = path.join(contentDir, 'posts');\n-const publicDataDir = path.join(__dirname, '..', 'public', 'data');\n-\n-if (!fs.existsSync(publicDataDir)) {\n-  fs.mkdirSync(publicDataDir, { recursive: true });\n-}\n-\n-let categories: CategoryItem[] = [];\n-const categoriesPath = path.join(contentDir, 'categories.json');\n-if (fs.existsSync(categoriesPath)) {\n-  categories = JSON.parse(fs.readFileSync(categoriesPath, 'utf-8')) as CategoryItem[];\n-}\n-fs.writeFileSync(\n-  path.join(publicDataDir, 'categories.json'),\n-  JSON.stringify(categories, null, 2),\n-  'utf-8'\n-);\n-\n-const postFiles = fs.existsSync(postsDir)\n-  ? fs.readdirSync(postsDir).filter((f: string) => f.endsWith('.md'))\n-  : [];\n-\n-const posts: BuildPost[] = postFiles.map((file: string) => {\n-  const fullPath = path.join(postsDir, file);\n-  const raw = fs.readFileSync(fullPath, 'utf-8');\n-  const { data: frontmatter, content } = matter(raw) as { data: Record<string, string>; content: string };\n-  const slug = frontmatter.slug ?? path.basename(file, '.md');\n-  const { html, toc } = markdownToHtmlWithToc(content);\n-  return {\n-    slug,\n-    title: frontmatter.title ?? slug,\n-    date: frontmatter.date ?? '',\n-    category: frontmatter.category ?? '',\n-    excerpt: frontmatter.excerpt ?? content.slice(0, 160).replace(/\\n/g, ' '),\n-    content: html,\n-    toc,\n-  };\n-});\n-\n-posts.sort((a, b) => (b.date < a.date ? -1 : 1));\n-\n-fs.writeFileSync(\n-  path.join(publicDataDir, 'posts.json'),\n-  JSON.stringify(posts, null, 2),\n-  'utf-8'\n-);\n-\n-console.log('Content built: %d posts, %d categories', posts.length, categories.length);\n+import { runBuildContent } from './content-pipeline';\n+\n+const entryFile = process.argv[1] ? path.resolve(process.argv[1]) : '';\n+const currentFile = fileURLToPath(import.meta.url);\n+\n+if (entryFile === currentFile) {\n+  await runBuildContent();\n+}\n*** End Patch\n",
+          "timestamp": "2026-04-17T01:25:23.958Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "npm test",
+            "max_output_tokens": 5000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:25:26.664Z"
+        },
+        {
+          "type": "assistant",
+          "text": "渲染核心已经通过测试，接下来补前端消费层和写作资产：移除运行时高亮副作用，接入 KaTeX 样式，增加示例文章、模板和正态分布图示。",
+          "timestamp": "2026-04-17T01:25:34.018Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "sed -n '1,240p' src/pages/Post.tsx",
+            "max_output_tokens": 4000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:25:34.018Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "sed -n '1,260p' src/index.css",
+            "max_output_tokens": 5000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:25:34.030Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "cat content/categories.json",
+            "max_output_tokens": 2000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:25:34.031Z"
+        },
+        {
+          "type": "assistant",
+          "text": "我现在改渲染入口和样式，然后补内容资产。具体会做 6 个点：全局引入 KaTeX/高亮样式、移除运行时高亮、加公式版式 CSS、补 AI/ML 分类、增加示例文章、增加数学写作模板。",
+          "timestamp": "2026-04-17T01:25:51.357Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "apply_patch",
+          "input": "*** Begin Patch\n*** Update File: /Volumes/zkj/personal/blog/src/main.tsx\n@@\n import React from 'react';\n import ReactDOM from 'react-dom/client';\n import { BrowserRouter } from 'react-router-dom';\n+import 'highlight.js/styles/atom-one-dark-reasonable.min.css';\n+import 'katex/dist/katex.min.css';\n import App from './App';\n import './index.css';\n*** Update File: /Volumes/zkj/personal/blog/src/pages/Post.tsx\n@@\n-import { useState, useEffect, useRef } from 'react';\n+import { useState, useEffect } from 'react';\n import { Link, useParams } from 'react-router-dom';\n-import hljs from 'highlight.js';\n-import 'highlight.js/styles/atom-one-dark-reasonable.min.css';\n import { getPostBySlug } from '../data';\n import { formatDate } from '../utils/format';\n import type { Post as PostType } from '../types';\n@@\n   const { slug } = useParams<{ slug: string }>();\n   const [post, setPost] = useState<PostType | null>(null);\n   const [loading, setLoading] = useState(true);\n-  const articleRef = useRef<HTMLElement>(null);\n \n   useEffect(() => {\n     if (!slug) return;\n     getPostBySlug(slug)\n       .then(setPost)\n       .catch(() => setPost(null))\n       .finally(() => setLoading(false));\n   }, [slug]);\n-\n-  useEffect(() => {\n-    if (!post || !articleRef.current) return;\n-    articleRef.current.querySelectorAll('pre code').forEach((el) => {\n-      hljs.highlightElement(el as HTMLElement);\n-    });\n-  }, [post]);\n \n   if (loading) {\n     return <div className=\"py-8 text-gray-500 dark:text-gray-400\">加载中…</div>;\n@@\n \n   return (\n-    <article ref={articleRef}>\n+    <article>\n*** Update File: /Volumes/zkj/personal/blog/src/index.css\n@@\n @tailwind base;\n @tailwind components;\n @tailwind utilities;\n \n @layer base {\n@@\n   }\n }\n \n-/* 文章正文：代码块统一深色背景，行内代码与引用 */\n+/* 文章正文：代码块统一深色背景，行内代码与引用 */\n .prose pre,\n .prose code {\n   @apply font-mono;\n }\n+\n /* 代码块：始终使用深色背景 */\n .prose pre {\n   @apply bg-gray-900 border border-gray-700 rounded-lg overflow-hidden;\n }\n+\n .prose pre code {\n   @apply bg-transparent p-4 block;\n }\n+\n .dark .prose pre {\n   @apply bg-gray-900 border-gray-700;\n }\n+\n .prose :not(pre) > code {\n   @apply bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded;\n }\n+\n .dark .prose :not(pre) > code {\n   @apply bg-gray-800 text-gray-200;\n }\n \n+.prose pre code.hljs {\n+  @apply bg-transparent;\n+}\n+\n /* 文章内表格：边框、斑马纹、圆角 */\n .prose table {\n   @apply w-full border-collapse text-sm my-4 rounded-lg overflow-hidden;\n }\n+\n .prose thead {\n   @apply bg-gray-100 dark:bg-gray-800;\n }\n+\n .prose th {\n   @apply border border-gray-200 dark:border-gray-700 px-4 py-2.5 text-left font-semibold text-gray-900 dark:text-gray-100;\n }\n+\n .prose td {\n   @apply border border-gray-200 dark:border-gray-700 px-4 py-2.5 text-gray-700 dark:text-gray-300;\n }\n+\n .prose tbody tr:nth-child(even) {\n   @apply bg-gray-50 dark:bg-gray-800/50;\n }\n+\n .prose tbody tr:hover {\n   @apply bg-gray-100/80 dark:bg-gray-700/30;\n }\n+\n+/* 数学公式：行内与块级保持稳定排版 */\n+.prose .katex {\n+  font-size: 1.02em;\n+  color: inherit;\n+}\n+\n+.prose .katex-display {\n+  @apply my-6 overflow-x-auto overflow-y-hidden py-2;\n+}\n+\n+.prose .katex-display > .katex {\n+  min-width: fit-content;\n+}\n+\n+.prose p .katex {\n+  @apply align-baseline;\n+}\n+\n+.prose .katex-display::-webkit-scrollbar {\n+  height: 0.5rem;\n+}\n+\n+.prose .katex-display::-webkit-scrollbar-thumb {\n+  @apply rounded-full bg-gray-300 dark:bg-gray-700;\n+}\n+\n+.prose .math-figure {\n+  @apply my-8 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-950;\n+}\n+\n+.prose .math-figure figcaption {\n+  @apply border-t border-gray-200 px-4 py-3 text-sm text-gray-600 dark:border-gray-800 dark:text-gray-400;\n+}\n+\n+.prose .math-figure svg {\n+  @apply h-auto w-full;\n+}\n*** Update File: /Volumes/zkj/personal/blog/content/categories.json\n@@\n   {\n     \"id\": \"vibecode\",\n     \"name\": \"Vibe Code\",\n     \"description\": \"AI编程语言与框架\"\n+  },\n+  {\n+    \"id\": \"ai\",\n+    \"name\": \"AI / ML\",\n+    \"description\": \"机器学习、数学推导与模型实践\"\n   },\n   {\n     \"id\": \"misc\",\n     \"name\": \"杂记\",\n     \"description\": \"随笔与其它\"\n   }\n ]\n*** Update File: /Volumes/zkj/personal/blog/README.md\n@@\n-基于 **React + Vite + TypeScript + Tailwind CSS** 的极简技术博客，支持分类与 Markdown 发布。\n+基于 **React + Vite + TypeScript + Tailwind CSS** 的极简技术博客，支持分类、Markdown 发布与数学公式写作。\n@@\n - **Tailwind CSS** 样式，支持深色/浅色主题（`darkMode: 'class'`）\n+- 标准 **LaTeX 数学公式**：行内 `$...$`、块级 `$$...$$`\n - 分类展示，分类通过 `content/categories.json` 配置，易扩展\n - 在 `content/posts` 下新增 `.md` 文件即可发布\n@@\n-2. 在文件顶部写 frontmatter：\n+2. 在文件顶部写 frontmatter：\n@@\n ---\n ```\n \n 3. 执行 `npm run build` 后部署 `dist` 目录。\n+\n+### 数学公式写法\n+\n+- 行内公式：`$\\\\nabla_\\\\theta J(\\\\theta)$`\n+- 块级公式：\n+\n+```tex\n+$$\n+\\\\mathcal{L}(\\\\theta) = -\\\\sum_{i=1}^{N} y_i \\\\log \\\\hat{y}_i\n+$$\n+```\n+\n+- 普通 Markdown、GFM 表格、代码块和数学公式可以混写。\n+- fenced code block 中的 `$...$` 不会被当作公式解析。\n+- 可复用模板见 `content/templates/math-ml-post-template.md`。\n@@\n - **React Router 6**\n - **Tailwind CSS 3** + **@tailwindcss/typography**（文章正文样式）\n-- 构建阶段：**gray-matter** + **marked** 解析 Markdown，输出 `public/data/posts.json` 与 `public/data/categories.json`\n+- 构建阶段：**gray-matter** + **remark/rehype** 管线解析 Markdown 与数学公式，输出 `public/data/posts.json` 与 `public/data/categories.json`\n - 构建脚本：**tsx** 运行 `scripts/build-content.ts`\n*** Add File: /Volumes/zkj/personal/blog/content/posts/math-ml-formula-toolkit.md\n+---\n+title: 数学与机器学习写作工具箱：公式、矩阵、梯度、交叉熵与正态分布\n+date: 2026-04-17\n+category: ai\n+excerpt: 一篇可直接复用的数学排版示例文章，覆盖矩阵乘法、梯度、交叉熵、极大似然估计与正态分布图示。\n+slug: math-ml-formula-toolkit\n+---\n+\n+这篇文章是博客里的数学写作基准页，用来验证并展示：\n+\n+- 行内公式与块级公式\n+- 数学公式、代码块、表格混排\n+- 机器学习常见表达的推荐写法\n+- 静态 SVG 图示在文章中的嵌入方式\n+\n+## 数学排版总览\n+\n+以后写数学和机器学习相关文章时，直接使用标准 LaTeX 语法即可：\n+\n+- 行内公式：$f(x) = x^2$\n+- 块级公式：\n+\n+$$\n+\\operatorname*{arg\\,min}_{\\theta} J(\\theta)\n+$$\n+\n+如果要同时插入代码块，也可以直接写。代码块中的 `$...$` 不会被当成数学公式：\n+\n+```python\n+equation = \"$x^T W y$\"\n+print(equation)\n+```\n+\n+## 线性代数示例\n+\n+矩阵乘法是机器学习文章里最常出现的表达之一。设输入矩阵为 $X \\in \\mathbb{R}^{n \\times d}$，权重矩阵为 $W \\in \\mathbb{R}^{d \\times k}$，则线性变换可以写为：\n+\n+$$\n+Y = XW\n+$$\n+\n+如果把它展开到元素级别，则第 $i$ 行第 $j$ 列元素为：\n+\n+$$\n+Y_{ij} = \\sum_{t=1}^{d} X_{it} W_{tj}\n+$$\n+\n+常见的列向量形式也可以写成：\n+\n+$$\n+\\mathbf{y} = A\\mathbf{x}\n+$$\n+\n+| 符号 | 维度 | 含义 |\n+| --- | --- | --- |\n+| $X$ | $n \\times d$ | 样本矩阵 |\n+| $W$ | $d \\times k$ | 参数矩阵 |\n+| $Y$ | $n \\times k$ | 输出矩阵 |\n+\n+## 微积分与梯度示例\n+\n+当目标函数为 $J(\\theta)$ 时，偏导与梯度通常写成：\n+\n+$$\n+\\frac{\\partial J}{\\partial \\theta_j}\n+$$\n+\n+以及\n+\n+$$\n+\\nabla_{\\theta} J(\\theta) =\n+\\begin{bmatrix}\n+\\frac{\\partial J}{\\partial \\theta_1} \\\\\n+\\frac{\\partial J}{\\partial \\theta_2} \\\\\n+\\vdots \\\\\n+\\frac{\\partial J}{\\partial \\theta_m}\n+\\end{bmatrix}\n+$$\n+\n+在梯度下降中，参数更新公式可以写为：\n+\n+$$\n+\\theta^{(t+1)} = \\theta^{(t)} - \\eta \\nabla_{\\theta} J\\left(\\theta^{(t)}\\right)\n+$$\n+\n+其中 $\\eta$ 是学习率，$\\nabla_{\\theta} J(\\theta)$ 表示当前参数点处的梯度。\n+\n+## 概率与统计示例\n+\n+一维正态分布的概率密度函数写作：\n+\n+$$\n+p(x \\mid \\mu, \\sigma^2) = \\frac{1}{\\sqrt{2\\pi\\sigma^2}} \\exp\\left(-\\frac{(x-\\mu)^2}{2\\sigma^2}\\right)\n+$$\n+\n+如果记随机变量为 $X$，则可写为：\n+\n+$$\n+X \\sim \\mathcal{N}(\\mu, \\sigma^2)\n+$$\n+\n+在机器学习里，期望和方差也很常见：\n+\n+$$\n+\\mathbb{E}[X] = \\mu, \\qquad \\operatorname{Var}(X) = \\sigma^2\n+$$\n+\n+## 损失函数与极大似然示例\n+\n+对于多分类任务，预测分布为 $\\hat{\\mathbf{y}}$、真实标签为 one-hot 向量 $\\mathbf{y}$ 时，交叉熵损失常写为：\n+\n+$$\n+\\mathcal{L}_{\\text{CE}}(\\mathbf{y}, \\hat{\\mathbf{y}})\n+= -\\sum_{c=1}^{C} y_c \\log \\hat{y}_c\n+$$\n+\n+如果配合 softmax 输出，则\n+\n+$$\n+\\hat{y}_c = \\frac{\\exp(z_c)}{\\sum_{j=1}^{C} \\exp(z_j)}\n+$$\n+\n+极大似然估计的目标通常写成：\n+\n+$$\n+\\hat{\\theta}_{\\text{MLE}} = \\operatorname*{arg\\,max}_{\\theta} \\prod_{i=1}^{N} p(x_i \\mid \\theta)\n+$$\n+\n+在实际推导中，通常先转成对数似然：\n+\n+$$\n+\\ell(\\theta) = \\log \\prod_{i=1}^{N} p(x_i \\mid \\theta)\n+= \\sum_{i=1}^{N} \\log p(x_i \\mid \\theta)\n+$$\n+\n+于是估计量也可以写为：\n+\n+$$\n+\\hat{\\theta}_{\\text{MLE}} = \\operatorname*{arg\\,max}_{\\theta} \\ell(\\theta)\n+$$\n+\n+## 图示示例与写作建议\n+\n+下面是一个可直接嵌入 Markdown 的静态 SVG 图示，适合放在概率分布、函数曲线、几何示意这类文章里：\n+\n+<figure class=\"math-figure\">\n+  <svg viewBox=\"0 0 720 360\" role=\"img\" aria-label=\"正态分布曲线示意图\">\n+    <defs>\n+      <linearGradient id=\"curve-fill\" x1=\"0\" x2=\"0\" y1=\"0\" y2=\"1\">\n+        <stop offset=\"0%\" stop-color=\"#38bdf8\" stop-opacity=\"0.35\"></stop>\n+        <stop offset=\"100%\" stop-color=\"#38bdf8\" stop-opacity=\"0.04\"></stop>\n+      </linearGradient>\n+    </defs>\n+    <rect x=\"0\" y=\"0\" width=\"720\" height=\"360\" fill=\"#f8fafc\"></rect>\n+    <line x1=\"80\" y1=\"290\" x2=\"640\" y2=\"290\" stroke=\"#94a3b8\" stroke-width=\"2\"></line>\n+    <line x1=\"360\" y1=\"80\" x2=\"360\" y2=\"310\" stroke=\"#cbd5e1\" stroke-width=\"2\" stroke-dasharray=\"8 8\"></line>\n+    <path d=\"M 80 290 C 170 290, 220 260, 280 180 C 320 125, 345 95, 360 90 C 375 95, 400 125, 440 180 C 500 260, 550 290, 640 290 L 640 290 L 80 290 Z\" fill=\"url(#curve-fill)\"></path>\n+    <path d=\"M 80 290 C 170 290, 220 260, 280 180 C 320 125, 345 95, 360 90 C 375 95, 400 125, 440 180 C 500 260, 550 290, 640 290\" fill=\"none\" stroke=\"#0f766e\" stroke-width=\"6\" stroke-linecap=\"round\"></path>\n+    <text x=\"360\" y=\"70\" text-anchor=\"middle\" font-size=\"24\" fill=\"#0f172a\">Normal Distribution</text>\n+    <text x=\"360\" y=\"325\" text-anchor=\"middle\" font-size=\"22\" fill=\"#475569\">μ</text>\n+    <text x=\"138\" y=\"325\" text-anchor=\"middle\" font-size=\"18\" fill=\"#64748b\">μ - 2σ</text>\n+    <text x=\"250\" y=\"325\" text-anchor=\"middle\" font-size=\"18\" fill=\"#64748b\">μ - σ</text>\n+    <text x=\"470\" y=\"325\" text-anchor=\"middle\" font-size=\"18\" fill=\"#64748b\">μ + σ</text>\n+    <text x=\"582\" y=\"325\" text-anchor=\"middle\" font-size=\"18\" fill=\"#64748b\">μ + 2σ</text>\n+  </svg>\n+  <figcaption>正态分布静态图示示例：峰值位于均值 $\\mu$ 附近，曲线宽度由标准差 $\\sigma$ 控制。</figcaption>\n+</figure>\n+\n+推荐的写作约定：\n+\n+- 公式尽量使用语义清晰的符号，如 $\\mathcal{L}$、$\\ell$、$\\mathbb{E}$、$\\operatorname{Var}$。\n+- 长公式使用块级写法，避免行内公式把段落撑乱。\n+- 图示优先用静态 SVG，便于版本管理与文章复用。\n+- 同一篇文章内，统一符号命名，不要在中途切换 $\\theta / w / \\beta$ 的角色含义。\n+\n+## 小结\n+\n+这篇文章可以直接作为以后写数学和机器学习博客时的参考页。需要新的常用表达时，只要继续往模板和示例库里补即可，不需要再改渲染链路。\n*** Add File: /Volumes/zkj/personal/blog/content/templates/math-ml-post-template.md\n+---\n+title: 数学 / 机器学习文章模板\n+date: YYYY-MM-DD\n+category: ai\n+excerpt: 用一句话概括这篇文章要解决的问题。\n+slug: your-slug\n+---\n+\n+> 这是写作模板，不会被自动发布。复制后放到 `content/posts/` 下，再按需修改。\n+\n+## 问题定义\n+\n+用 2-4 句话说明：\n+\n+- 研究对象是什么\n+- 目标函数或建模目标是什么\n+- 为什么这件事值得讲\n+\n+## 符号说明\n+\n+| 符号 | 含义 | 维度 / 备注 |\n+| --- | --- | --- |\n+| $x$ | 单个输入样本 | $\\mathbb{R}^{d}$ |\n+| $X$ | 样本矩阵 | $n \\times d$ |\n+| $\\theta$ | 参数向量 | 可按上下文替换 |\n+\n+## 核心公式\n+\n+行内公式示例：$f_\\theta(x)$\n+\n+块级公式示例：\n+\n+$$\n+\\hat{\\theta} = \\operatorname*{arg\\,min}_{\\theta} J(\\theta)\n+$$\n+\n+常用片段：\n+\n+- 矩阵与向量：\n+\n+$$\n+\\mathbf{y} = A\\mathbf{x}, \\qquad Y = XW\n+$$\n+\n+- 偏导与梯度：\n+\n+$$\n+\\frac{\\partial J}{\\partial \\theta_j}, \\qquad \\nabla_\\theta J(\\theta)\n+$$\n+\n+- 期望、方差、协方差：\n+\n+$$\n+\\mathbb{E}[X], \\qquad \\operatorname{Var}(X), \\qquad \\operatorname{Cov}(X, Y)\n+$$\n+\n+- softmax 与交叉熵：\n+\n+$$\n+\\hat{y}_c = \\frac{\\exp(z_c)}{\\sum_{j=1}^{C} \\exp(z_j)}, \\qquad\n+\\mathcal{L}_{\\text{CE}} = -\\sum_{c=1}^{C} y_c \\log \\hat{y}_c\n+$$\n+\n+- 极大似然估计：\n+\n+$$\n+\\hat{\\theta}_{\\text{MLE}} = \\operatorname*{arg\\,max}_{\\theta} \\sum_{i=1}^{N} \\log p(x_i \\mid \\theta)\n+$$\n+\n+- 正态分布：\n+\n+$$\n+X \\sim \\mathcal{N}(\\mu, \\sigma^2), \\qquad\n+p(x \\mid \\mu, \\sigma^2) = \\frac{1}{\\sqrt{2\\pi\\sigma^2}} \\exp\\left(-\\frac{(x-\\mu)^2}{2\\sigma^2}\\right)\n+$$\n+\n+## 推导过程\n+\n+按步骤拆开，不要把多步推导挤进一行：\n+\n+$$\n+\\ell(\\theta) = \\sum_{i=1}^{N} \\log p(x_i \\mid \\theta)\n+$$\n+\n+然后说明每一步使用了什么假设、化简或近似。\n+\n+## 图表说明\n+\n+如果需要图示，优先使用静态 SVG 或图片，并在图下说明：\n+\n+- 图表达了什么\n+- 坐标轴或关键标注是什么意思\n+- 读者该从图里看出什么结论\n+\n+## 代码与实验\n+\n+```python\n+logits = model(x)\n+loss = criterion(logits, target)\n+```\n+\n+代码块中的 `$...$` 不会被当成数学公式解析。\n+\n+## 小结\n+\n+最后一节固定回答三件事：\n+\n+- 核心结论是什么\n+- 使用了哪些关键公式\n+- 下一篇可以自然延伸到哪里\n*** End Patch\n",
+          "timestamp": "2026-04-17T01:28:40.410Z"
+        },
+        {
+          "type": "assistant",
+          "text": "核心代码和内容都补上了，接下来进入验证：先跑单元测试，再跑内容构建和整站打包，确认没有类型或渲染回归。",
+          "timestamp": "2026-04-17T01:28:52.463Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "npm test",
+            "max_output_tokens": 5000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:28:52.470Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "npm run content",
+            "max_output_tokens": 5000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:28:52.471Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "npm run build",
+            "max_output_tokens": 6000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:28:52.472Z"
+        },
+        {
+          "type": "assistant",
+          "text": "单元测试已经绿了；`tsx` 在沙箱里因为 IPC pipe 权限被拦住，属于环境限制，不是代码错误。我会直接申请放开执行 `npm run content` 和 `npm run build` 来完成最终验证。",
+          "timestamp": "2026-04-17T01:28:57.852Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "npm run content",
+            "justification": "Do you want to allow running the content build outside the sandbox so tsx can create its IPC pipe and verify the new Markdown/math pipeline?",
+            "max_output_tokens": 5000,
+            "prefix_rule": [
+              "npm",
+              "run",
+              "content"
+            ],
+            "sandbox_permissions": "require_escalated",
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:28:59.569Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "npm run build",
+            "justification": "Do you want to allow running the production build outside the sandbox so tsx and Vite can verify the site still builds end-to-end?",
+            "max_output_tokens": 7000,
+            "prefix_rule": [
+              "npm",
+              "run",
+              "build"
+            ],
+            "sandbox_permissions": "require_escalated",
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:29:29.432Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "write_stdin",
+          "input": {
+            "chars": "",
+            "max_output_tokens": 7000,
+            "session_id": 30881,
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:29:38.188Z"
+        },
+        {
+          "type": "assistant",
+          "text": "构建已经过了。我再抽查生成结果，重点看 3 件事：KaTeX HTML 是否生成、目录锚点是否保留、正态分布图示的说明有没有被原样保留成字面量。",
+          "timestamp": "2026-04-17T01:29:45.044Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "rg -n \"math-ml-formula-toolkit|katex|katex-display|math-figure|figcaption|hljs language-python\" public/data/posts.json",
+            "max_output_tokens": 6000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:29:45.050Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "node -e \"const posts=require('./public/data/posts.json'); const p=posts.find(x=>x.slug==='math-ml-formula-toolkit'); console.log(JSON.stringify({title:p.title,toc:p.toc.slice(0,10),content:p.content.slice(0,4000)},null,2));\"",
+            "max_output_tokens": 7000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:29:45.050Z"
+        },
+        {
+          "type": "assistant",
+          "text": "我补一个小修正：示例文章里的 SVG 说明文字在原生 HTML 容器里，里面的 `$...$` 不会再经过数学解析，所以我把它改成直接可显示的 `μ`、`σ`，避免页面上出现字面量。",
+          "timestamp": "2026-04-17T01:29:51.399Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "apply_patch",
+          "input": "*** Begin Patch\n*** Update File: /Volumes/zkj/personal/blog/content/posts/math-ml-formula-toolkit.md\n@@\n-  <figcaption>正态分布静态图示示例：峰值位于均值 $\\mu$ 附近，曲线宽度由标准差 $\\sigma$ 控制。</figcaption>\n+  <figcaption>正态分布静态图示示例：峰值位于均值 μ 附近，曲线宽度由标准差 σ 控制。</figcaption>\n </figure>\n*** End Patch\n",
+          "timestamp": "2026-04-17T01:29:53.891Z"
+        },
+        {
+          "type": "assistant",
+          "text": "我进入最后一轮验证前，先读取 `verification-before-completion`，按它的要求把结果复跑一遍，再决定是否可以收尾。",
+          "timestamp": "2026-04-17T01:29:59.946Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "sed -n '1,240p' /Users/bigo/.codex/skills/verification-before-completion/SKILL.md",
+            "max_output_tokens": 5000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:30:01.195Z"
+        },
+        {
+          "type": "assistant",
+          "text": "最后一轮按验证要求重跑完整命令：`npm test`、`npm run content`、`npm run build`。跑完我会对照计划逐项确认，而不是只看命令返回码。",
+          "timestamp": "2026-04-17T01:30:10.717Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "npm test",
+            "max_output_tokens": 5000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:30:10.723Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "npm run content",
+            "justification": "Do you want to allow rerunning the content build outside the sandbox for final verification after the last article update?",
+            "max_output_tokens": 5000,
+            "prefix_rule": [
+              "npm",
+              "run",
+              "content"
+            ],
+            "sandbox_permissions": "require_escalated",
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:30:10.724Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "npm run build",
+            "justification": "Do you want to allow rerunning the production build outside the sandbox for final verification after the last article update?",
+            "max_output_tokens": 7000,
+            "prefix_rule": [
+              "npm",
+              "run",
+              "build"
+            ],
+            "sandbox_permissions": "require_escalated",
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:30:10.725Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "write_stdin",
+          "input": {
+            "chars": "",
+            "max_output_tokens": 7000,
+            "session_id": 72850,
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:30:15.165Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "git status --short",
+            "max_output_tokens": 3000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:30:24.176Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "git diff --stat",
+            "max_output_tokens": 4000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:30:24.176Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "node -e \"const posts=require('./public/data/posts.json'); const p=posts.find(x=>x.slug==='math-ml-formula-toolkit'); console.log(JSON.stringify({slug:p.slug,tocCount:p.toc.length,hasKatex:/katex/.test(p.content),hasHighlight:/hljs language-python/.test(p.content),hasFigure:/math-figure/.test(p.content)},null,2));\"",
+            "max_output_tokens": 2000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:30:24.176Z"
+        },
+        {
+          "type": "assistant",
+          "text": "已按计划实现。核心改动是把内容构建迁移到 [`scripts/content-pipeline.ts`](/Volumes/zkj/personal/blog/scripts/content-pipeline.ts)，用 `remark/rehype` 在构建期完成 Markdown、GFM、LaTeX 数学公式、目录锚点和代码高亮；[`scripts/build-content.ts`](/Volumes/zkj/personal/blog/scripts/build-content.ts) 现在只负责执行构建。文章页 [`src/pages/Post.tsx`](/Volumes/zkj/personal/blog/src/pages/Post.tsx) 去掉了运行时 `highlight.js` 高亮副作用，样式改到全局入口和 [`src/index.css`](/Volumes/zkj/personal/blog/src/index.css) 里统一处理 KaTeX、长公式横向滚动、SVG 图示卡片和构建期高亮样式。\n\n写作资产也补上了：新增示例文章 [`content/posts/math-ml-formula-toolkit.md`](/Volumes/zkj/personal/blog/content/posts/math-ml-formula-toolkit.md)，包含矩阵乘法、梯度偏导、交叉熵、极大似然估计、正态分布公式和静态 SVG 图示；新增模板 [`content/templates/math-ml-post-template.md`](/Volumes/zkj/personal/blog/content/templates/math-ml-post-template.md) 作为以后写数学/ML 文章的起点；[`README.md`](/Volumes/zkj/personal/blog/README.md) 也更新了数学写作约定，[`content/categories.json`](/Volumes/zkj/personal/blog/content/categories.json) 增加了 `AI / ML` 分类。还补了测试 [`scripts/build-content.test.ts`](/Volumes/zkj/personal/blog/scripts/build-content.test.ts)，覆盖公式渲染、重复标题 slug 和“代码块里 `$...$` 不被误解析”。\n\n验证结果是最新跑过的：\n- `npm test` 通过，2/2 测试通过。\n- `npm run content` 通过，成功生成 `4 posts, 4 categories`。\n- `npm run build` 通过，Vite 生产构建和 `postbuild` 都完成。\n\n补充一点：当前工作区里还存在你原来就有的未跟踪 `tmp-mf-json-flow-*` 文件，我没有动它们。`npm install` 之后审计输出里还有 3 个 vulnerability 提示，我也没有顺手处理。",
+          "timestamp": "2026-04-17T01:30:45.021Z"
+        },
+        {
+          "type": "user",
+          "text": "看数学公式示例的效果",
+          "timestamp": "2026-04-17T01:33:13.819Z"
+        },
+        {
+          "type": "assistant",
+          "text": "我来把站点跑起来并定位到那篇数学示例文章，这样你可以直接看最终渲染效果。先启动本地开发服务器。",
+          "timestamp": "2026-04-17T01:33:19.384Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "npm run dev",
+            "justification": "Do you want to allow starting the local dev server outside the sandbox so you can preview the math formula article in the browser?",
+            "max_output_tokens": 4000,
+            "prefix_rule": [
+              "npm",
+              "run",
+              "dev"
+            ],
+            "sandbox_permissions": "require_escalated",
+            "tty": true,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:33:22.090Z"
+        },
+        {
+          "type": "assistant",
+          "text": "开发服务器已经起来了一半，我在等 Vite 输出本地访问地址。拿到地址后我会直接给你文章链接。",
+          "timestamp": "2026-04-17T01:33:27.578Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "write_stdin",
+          "input": {
+            "chars": "",
+            "max_output_tokens": 4000,
+            "session_id": 40660,
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:33:28.199Z"
+        },
+        {
+          "type": "assistant",
+          "text": "直接打开这两个地址看效果：\n\n- 首页：[http://localhost:5173/](http://localhost:5173/)\n- 数学公式示例文章：[http://localhost:5173/post/math-ml-formula-toolkit](http://localhost:5173/post/math-ml-formula-toolkit)\n\n这篇里已经包含：\n- 矩阵乘法\n- 梯度与偏微分\n- 交叉熵\n- 极大似然估计\n- 正态分布公式\n- 正态分布图示\n\n本地开发服务器还在运行中。",
+          "timestamp": "2026-04-17T01:33:36.892Z"
+        },
+        {
+          "type": "user",
+          "text": "# In app browser (IAB):\n- The user has the in-app browser (IAB) open.\n- Current URL: http://localhost:5173/post/math-ml-formula-toolkit\n\n## My request for Codex:\n发布到网上 并提交代码",
+          "timestamp": "2026-04-17T01:34:08.560Z"
+        },
+        {
+          "type": "assistant",
+          "text": "我先检查当前分支、变更范围和发布脚本状态，然后会依次做两件事：提交这次改动，再执行线上发布。发布如果需要网络权限，我会直接发起授权请求。",
+          "timestamp": "2026-04-17T01:34:19.436Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "git branch --show-current",
+            "max_output_tokens": 1000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:34:19.438Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "git status --short",
+            "max_output_tokens": 4000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:34:19.440Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "sed -n '1,220p' /Users/bigo/.codex/skills/finishing-a-development-branch/SKILL.md",
+            "max_output_tokens": 5000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:34:19.443Z"
+        },
+        {
+          "type": "assistant",
+          "text": "我在 `main` 上，且工作区里还有一批与你这次功能无关的 `tmp-mf-json-flow-*` 未跟踪文件。我会只提交这次博客数学支持相关的文件，不碰那些临时文件；然后执行 `deploy` 发布站点。",
+          "timestamp": "2026-04-17T01:34:31.143Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "npm test",
+            "max_output_tokens": 5000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:34:31.150Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "git remote -v",
+            "max_output_tokens": 2000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:34:31.155Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "write_stdin",
+          "input": {
+            "chars": "",
+            "max_output_tokens": 5000,
+            "session_id": 2733,
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:34:33.819Z"
+        },
+        {
+          "type": "assistant",
+          "text": "测试刚重新验证过，2 个测试都通过。下一步我会只暂存这次改动对应的文件并创建提交，然后再推源码和执行 GitHub Pages 发布。",
+          "timestamp": "2026-04-17T01:34:37.123Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "git add README.md content/categories.json content/posts/math-ml-formula-toolkit.md content/templates/math-ml-post-template.md package.json package-lock.json public/data/categories.json public/data/posts.json scripts/build-content.ts scripts/build-content.test.ts scripts/content-pipeline.ts src/index.css src/main.tsx src/pages/Post.tsx && git commit -m \"feat: add math and ML writing support\"",
+            "max_output_tokens": 6000,
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:34:39.336Z"
+        },
+        {
+          "type": "assistant",
+          "text": "Git 暂存被沙箱拦住了，需要仓库写权限。我直接申请放开 `git add` 和 `git commit`，拿到后继续，不会把那批 `tmp-*` 文件带进提交。",
+          "timestamp": "2026-04-17T01:34:47.031Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "git add README.md content/categories.json content/posts/math-ml-formula-toolkit.md content/templates/math-ml-post-template.md package.json package-lock.json public/data/categories.json public/data/posts.json scripts/build-content.ts scripts/build-content.test.ts scripts/content-pipeline.ts src/index.css src/main.tsx src/pages/Post.tsx",
+            "justification": "Do you want to allow staging the math/ML blog support files for commit, excluding the unrelated tmp files?",
+            "max_output_tokens": 3000,
+            "prefix_rule": [
+              "git",
+              "add"
+            ],
+            "sandbox_permissions": "require_escalated",
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:34:47.035Z"
+        },
+        {
+          "type": "tool_use",
+          "name": "exec_command",
+          "input": {
+            "cmd": "git commit -m \"feat: add math and ML writing support\"",
+            "justification": "Do you want to allow creating a commit for the new math and machine-learning blog support?",
+            "max_output_tokens": 5000,
+            "prefix_rule": [
+              "git",
+              "commit"
+            ],
+            "sandbox_permissions": "require_escalated",
+            "workdir": "/Volumes/zkj/personal/blog",
+            "yield_time_ms": 1000
+          },
+          "timestamp": "2026-04-17T01:34:47.035Z"
+        }
+      ],
+      "total_additions": 222,
+      "total_deletions": 142,
+      "accepted_lines": 222,
+      "overriden_lines": 0
+    }
+  },
+  "logical_commit_id": "92897c058e607065022aa071cb4dc534c7d9cffd"
+}
