@@ -16,39 +16,91 @@
 .prose code {
   @apply font-mono;
 }
+
 /* 代码块：始终使用深色背景 */
 .prose pre {
   @apply bg-gray-900 border border-gray-700 rounded-lg overflow-hidden;
 }
+
 .prose pre code {
   @apply bg-transparent p-4 block;
 }
+
 .dark .prose pre {
   @apply bg-gray-900 border-gray-700;
 }
+
 .prose :not(pre) > code {
   @apply bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded;
 }
+
 .dark .prose :not(pre) > code {
   @apply bg-gray-800 text-gray-200;
+}
+
+.prose pre code.hljs {
+  @apply bg-transparent;
 }
 
 /* 文章内表格：边框、斑马纹、圆角 */
 .prose table {
   @apply w-full border-collapse text-sm my-4 rounded-lg overflow-hidden;
 }
+
 .prose thead {
   @apply bg-gray-100 dark:bg-gray-800;
 }
+
 .prose th {
   @apply border border-gray-200 dark:border-gray-700 px-4 py-2.5 text-left font-semibold text-gray-900 dark:text-gray-100;
 }
+
 .prose td {
   @apply border border-gray-200 dark:border-gray-700 px-4 py-2.5 text-gray-700 dark:text-gray-300;
 }
+
 .prose tbody tr:nth-child(even) {
   @apply bg-gray-50 dark:bg-gray-800/50;
 }
+
 .prose tbody tr:hover {
   @apply bg-gray-100/80 dark:bg-gray-700/30;
+}
+
+/* 数学公式：行内与块级保持稳定排版 */
+.prose .katex {
+  font-size: 1.02em;
+  color: inherit;
+}
+
+.prose .katex-display {
+  @apply my-6 overflow-x-auto overflow-y-hidden py-2;
+}
+
+.prose .katex-display > .katex {
+  min-width: fit-content;
+}
+
+.prose p .katex {
+  @apply align-baseline;
+}
+
+.prose .katex-display::-webkit-scrollbar {
+  height: 0.5rem;
+}
+
+.prose .katex-display::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-gray-300 dark:bg-gray-700;
+}
+
+.prose .math-figure {
+  @apply my-8 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-950;
+}
+
+.prose .math-figure figcaption {
+  @apply border-t border-gray-200 px-4 py-3 text-sm text-gray-600 dark:border-gray-800 dark:text-gray-400;
+}
+
+.prose .math-figure svg {
+  @apply h-auto w-full;
 }

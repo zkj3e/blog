@@ -1,7 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import hljs from 'highlight.js';
-import 'highlight.js/styles/atom-one-dark-reasonable.min.css';
 import { getPostBySlug } from '../data';
 import { formatDate } from '../utils/format';
 import type { Post as PostType } from '../types';
@@ -10,7 +8,6 @@ export default function Post() {
   const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<PostType | null>(null);
   const [loading, setLoading] = useState(true);
-  const articleRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (!slug) return;
@@ -19,13 +16,6 @@ export default function Post() {
       .catch(() => setPost(null))
       .finally(() => setLoading(false));
   }, [slug]);
-
-  useEffect(() => {
-    if (!post || !articleRef.current) return;
-    articleRef.current.querySelectorAll('pre code').forEach((el) => {
-      hljs.highlightElement(el as HTMLElement);
-    });
-  }, [post]);
 
   if (loading) {
     return <div className="py-8 text-gray-500 dark:text-gray-400">加载中…</div>;
@@ -41,7 +31,7 @@ export default function Post() {
   }
 
   return (
-    <article ref={articleRef}>
+    <article>
       <header className="mb-6">
         <h1 className="text-2xl font-semibold mb-2">{post.title}</h1>
         <p className="text-sm text-gray-500 dark:text-gray-400">

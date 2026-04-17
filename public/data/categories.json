@@ -10,6 +10,11 @@
     "description": "AI编程语言与框架"
   },
   {
+    "id": "ai",
+    "name": "AI / ML",
+    "description": "机器学习、数学推导与模型实践"
+  },
+  {
     "id": "misc",
     "name": "杂记",
     "description": "随笔与其它"
