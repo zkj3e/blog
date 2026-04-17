@@ -51,6 +51,65 @@ $$
 \mathbf{y} = A\mathbf{x}
 $$
 
+如果换到 Transformer 的 self-attention 语境里，通常会先把一段序列的 token 表示堆成一个输入矩阵。设第 $i$ 个 token 的表示为 $x_i \in \mathbb{R}^{d}$，则：
+
+$$
+X =
+\begin{bmatrix}
+x_1^\top \\
+x_2^\top \\
+\vdots \\
+x_n^\top
+\end{bmatrix}
+\in \mathbb{R}^{n \times d}
+$$
+
+其中 $n$ 是序列长度，$d$ 是 embedding 维度。接着用三组不同的投影矩阵生成 Query、Key 和 Value：
+
+$$
+W_Q, W_K \in \mathbb{R}^{d \times d_k},
+\qquad
+W_V \in \mathbb{R}^{d \times d_v}
+$$
+
+$$
+\color{blue}{Q} = X W_Q =
+\begin{bmatrix}
+\color{blue}{q_1^\top} \\
+\color{blue}{q_2^\top} \\
+\vdots \\
+\color{blue}{q_n^\top}
+\end{bmatrix},
+\qquad
+\color{green}{K} = X W_K =
+\begin{bmatrix}
+\color{green}{k_1^\top} \\
+\color{green}{k_2^\top} \\
+\vdots \\
+\color{green}{k_n^\top}
+\end{bmatrix},
+\qquad
+\color{orange}{V} = X W_V =
+\begin{bmatrix}
+\color{orange}{v_1^\top} \\
+\color{orange}{v_2^\top} \\
+\vdots \\
+\color{orange}{v_n^\top}
+\end{bmatrix}
+$$
+
+于是 scaled dot-product attention 可以写成：
+
+$$
+\operatorname{Attention}(\color{blue}{Q}, \color{green}{K}, \color{orange}{V})
+=
+\operatorname{softmax}\left(
+\frac{\color{blue}{Q}\color{green}{K}^\top}{\sqrt{d_k}}
+\right)\color{orange}{V}
+$$
+
+这个写法的好处是，读者能先看到输入矩阵里具体由 $x_1, x_2, \dots, x_n$ 组成，再理解它们如何分别映射成不同语义角色的 $\color{blue}{Q}$、$\color{green}{K}$、$\color{orange}{V}$。
+
 | 符号 | 维度 | 含义 |
 | --- | --- | --- |
 | $X$ | $n \times d$ | 样本矩阵 |
