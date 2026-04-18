@@ -48,3 +48,36 @@ $$
   assert.match(html, /katex-display/);
   assert.match(html, /id="正态分布-1"/);
 });
+
+test('converts demo shortcodes into interactive demo placeholders with serialized props', async () => {
+  const markdown = `
+## 优化过程
+
+{{< demo name="gradient-descent" title="梯度下降演示" note="观察学习率变化" autoplay="true" >}}
+`;
+
+  const { html, toc } = await markdownToHtmlWithToc(markdown);
+
+  assert.deepEqual(toc, [{ depth: 2, text: '优化过程', id: '优化过程' }]);
+  assert.match(html, /data-demo="gradient-descent"/);
+  assert.match(html, /class="demo-embed"/);
+  assert.match(html, /data-demo-props="[^"]*梯度下降演示[^"]*"/);
+  assert.match(html, /data-demo-props="[^"]*autoplay[^"]*true[^"]*"/);
+});
+
+test('preserves math rendering alongside demo shortcodes in the same article', async () => {
+  const markdown = `
+## Loss 收敛
+
+$$
+\\theta_{t+1} = \\theta_t - \\eta \\nabla_\\theta J(\\theta_t)
+$$
+
+{{< demo name="gradient-descent" title="Loss 收敛演示" >}}
+`;
+
+  const { html } = await markdownToHtmlWithToc(markdown);
+
+  assert.match(html, /katex-display/);
+  assert.match(html, /data-demo="gradient-descent"/);
+});

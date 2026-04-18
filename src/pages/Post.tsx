@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { mountInteractiveDemos } from '../components/demos/registry';
 import { getPostBySlug } from '../data';
 import { formatDate } from '../utils/format';
 import type { Post as PostType } from '../types';
@@ -8,6 +9,7 @@ export default function Post() {
   const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<PostType | null>(null);
   const [loading, setLoading] = useState(true);
+  const contentRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!slug) return;
@@ -16,6 +18,17 @@ export default function Post() {
       .catch(() => setPost(null))
       .finally(() => setLoading(false));
   }, [slug]);
+
+  useEffect(() => {
+    if (!post || !contentRef.current) return;
+    const cleanups = mountInteractiveDemos(contentRef.current);
+
+    return () => {
+      for (const cleanup of cleanups) {
+        cleanup();
+      }
+    };
+  }, [post]);
 
   if (loading) {
     return <div className="py-8 text-gray-500 dark:text-gray-400">加载中…</div>;
@@ -67,6 +80,7 @@ export default function Post() {
         </nav>
       ) : null}
       <div
+        ref={contentRef}
         className="prose prose-gray dark:prose-invert max-w-none prose-pre:overflow-x-auto prose-code:font-mono [&_h2]:scroll-mt-24 [&_h3]:scroll-mt-24 [&_h4]:scroll-mt-24 [&_h5]:scroll-mt-24 [&_h6]:scroll-mt-24"
         dangerouslySetInnerHTML={{ __html: post.content }}
       />

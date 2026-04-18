@@ -7,6 +7,7 @@
 - **TypeScript** 全栈类型安全
 - **Tailwind CSS** 样式，支持深色/浅色主题（`darkMode: 'class'`）
 - 标准 **LaTeX 数学公式**：行内 `$...$`、块级 `$$...$$`
+- 支持文章内嵌 **动态 SVG 动画** 与 **交互 demo 占位块**
 - 分类展示，分类通过 `content/categories.json` 配置，易扩展
 - 在 `content/posts` 下新增 `.md` 文件即可发布
 
@@ -55,6 +56,19 @@ $$
 - 普通 Markdown、GFM 表格、代码块和数学公式可以混写。
 - fenced code block 中的 `$...$` 不会被当作公式解析。
 - 可复用模板见 `content/templates/math-ml-post-template.md`。
+- 动态文章模板见 `content/templates/dynamic-math-post-template.md` 与 `content/templates/interactive-demo-template.md`。
+
+### 动态 demo 写法
+
+在 Markdown 里使用短代码嵌入交互组件：
+
+```md
+{{< demo name="gradient-descent" title="梯度下降交互演示" note="观察学习率变化。" autoplay="true" >}}
+```
+
+当前内置 demo：
+
+- `gradient-descent`：展示参数点沿损失曲线向最小值移动，并支持调节学习率。
 
 ## 扩展分类
 

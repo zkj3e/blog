@@ -36,6 +36,44 @@ export interface BuildPost {
   toc: TocItem[];
 }
 
+const DEMO_SHORTCODE_RE = /\{\{<\s*demo\s+([^>]+?)\s*>}}/g;
+const DEMO_ATTR_RE = /([a-zA-Z][\w-]*)="([^"]*)"/g;
+
+function escapeHtmlAttribute(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function parseDemoAttributes(rawAttributes: string): Record<string, string> {
+  const attributes: Record<string, string> = {};
+
+  for (const match of rawAttributes.matchAll(DEMO_ATTR_RE)) {
+    attributes[match[1]] = match[2];
+  }
+
+  return attributes;
+}
+
+export function preprocessMarkdown(markdown: string): string {
+  return markdown.replace(DEMO_SHORTCODE_RE, (_, rawAttributes: string) => {
+    const attributes = parseDemoAttributes(rawAttributes);
+    const demoName = attributes.name?.trim();
+
+    if (!demoName) {
+      return '';
+    }
+
+    delete attributes.name;
+
+    return `<div class="demo-embed" data-demo="${escapeHtmlAttribute(demoName)}" data-demo-props="${escapeHtmlAttribute(
+      JSON.stringify(attributes)
+    )}"></div>`;
+  });
+}
+
 function extractText(node: unknown): string {
   if (!node || typeof node !== 'object') return '';
 
@@ -80,6 +118,7 @@ function createTocPlugin(toc: TocItem[]) {
 
 export async function markdownToHtmlWithToc(markdown: string): Promise<{ html: string; toc: TocItem[] }> {
   const toc: TocItem[] = [];
+  const processedMarkdown = preprocessMarkdown(markdown);
 
   const file = await unified()
     .use(remarkParse)
@@ -94,7 +133,7 @@ export async function markdownToHtmlWithToc(markdown: string): Promise<{ html: s
       plainText: ['txt', 'text'],
     })
     .use(rehypeStringify)
-    .process(markdown);
+    .process(processedMarkdown);
 
   return { html: String(file), toc };
 }
