@@ -8,6 +8,8 @@
     "dev": "tsx scripts/build-content.ts && vite",
     "build": "tsx scripts/build-content.ts && vite build",
     "test": "node --import tsx --test scripts/**/*.test.ts",
+    "wechat:export": "node --import tsx scripts/export-wechat-html.ts",
+    "wechat:draft": "node --import tsx scripts/publish-wechat-article.ts",
     "postbuild": "node -e \"require('fs').copyFileSync('dist/index.html','dist/404.html')\"",
     "deploy": "npm run build && gh-pages -d dist",
     "preview": "vite preview"
@@ -29,7 +31,9 @@
     "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.3",
     "hast-util-to-string": "^3.0.1",
+    "katex": "^0.16.45",
     "marked": "^12.0.1",
+    "playwright-core": "^1.59.1",
     "postcss": "^8.4.35",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-highlight": "^7.0.2",

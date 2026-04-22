@@ -36,6 +36,24 @@ export interface BuildPost {
   toc: TocItem[];
 }
 
+export interface FormulaRenderInput {
+  latex: string;
+  displayMode: boolean;
+}
+
+export interface FormulaRenderResult {
+  dataUri: string;
+  cachePath: string;
+  width: number;
+  height: number;
+}
+
+export interface MarkdownRenderOptions {
+  target?: 'site' | 'wechat';
+  formulaCacheDir?: string;
+  formulaRenderer?: (input: FormulaRenderInput) => Promise<FormulaRenderResult>;
+}
+
 const DEMO_SHORTCODE_RE = /\{\{<\s*demo\s+([^>]+?)\s*>}}/g;
 const DEMO_ATTR_RE = /([a-zA-Z][\w-]*)="([^"]*)"/g;
 
@@ -92,6 +110,81 @@ function extractText(node: unknown): string {
   return '';
 }
 
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function buildWechatFormulaFallback(latex: string, displayMode: boolean): string {
+  const escaped = escapeHtml(latex);
+  if (displayMode) {
+    return `<pre class="wechat-formula-fallback"><code>${escaped}</code></pre>`;
+  }
+  return `<code class="wechat-formula-fallback">${escaped}</code>`;
+}
+
+function buildWechatFormulaImageTag(result: FormulaRenderResult, displayMode: boolean, latex: string): string {
+  const escapedAlt = escapeHtmlAttribute(latex);
+  if (displayMode) {
+    return `<div class="wechat-formula-display"><img src="${result.dataUri}" alt="${escapedAlt}" data-wechat-formula="display" data-formula-cache="${escapeHtmlAttribute(
+      result.cachePath,
+    )}" width="${result.width}" height="${result.height}" /></div>`;
+  }
+  return `<img src="${result.dataUri}" alt="${escapedAlt}" data-wechat-formula="inline" data-formula-cache="${escapeHtmlAttribute(
+    result.cachePath,
+  )}" width="${result.width}" height="${result.height}" style="display:inline-block; vertical-align:middle;" />`;
+}
+
+function createWechatFormulaPlugin(options: MarkdownRenderOptions) {
+  return () => async (tree: any) => {
+    if (!options.formulaRenderer) {
+      throw new Error('wechat rendering requires a formulaRenderer');
+    }
+
+    const replacements: Array<{
+      parent: { children: unknown[] };
+      index: number;
+      html: string;
+    }> = [];
+
+    visit(tree, (node: any, index, parent: any) => {
+      if (!parent || typeof index !== 'number') return;
+      if (node.type !== 'inlineMath' && node.type !== 'math') return;
+
+      replacements.push({
+        parent,
+        index,
+        html: '',
+      });
+    });
+
+    for (const replacement of replacements) {
+      const node = replacement.parent.children[replacement.index] as { type: string; value?: string };
+      const latex = node.value ?? '';
+      const displayMode = node.type === 'math';
+
+      try {
+        const result = await options.formulaRenderer({
+          latex,
+          displayMode,
+        });
+        replacement.html = buildWechatFormulaImageTag(result, displayMode, latex);
+      } catch {
+        replacement.html = buildWechatFormulaFallback(latex, displayMode);
+      }
+    }
+
+    for (const replacement of replacements.reverse()) {
+      replacement.parent.children.splice(replacement.index, 1, {
+        type: 'html',
+        value: replacement.html,
+      });
+    }
+  };
+}
+
 function createTocPlugin(toc: TocItem[]) {
   return () => (tree: unknown) => {
     const slugger = new GithubSlugger();
@@ -116,26 +209,60 @@ function createTocPlugin(toc: TocItem[]) {
   };
 }
 
-export async function markdownToHtmlWithToc(markdown: string): Promise<{ html: string; toc: TocItem[] }> {
+export async function markdownToHtmlWithToc(
+  markdown: string,
+  options: MarkdownRenderOptions = {},
+): Promise<{ html: string; toc: TocItem[] }> {
   const toc: TocItem[] = [];
   const processedMarkdown = preprocessMarkdown(markdown);
+  const effectiveOptions = { ...options };
+  let closeWechatRenderer: (() => Promise<void>) | null = null;
 
-  const file = await unified()
+  if (effectiveOptions.target === 'wechat' && !effectiveOptions.formulaRenderer) {
+    const { closeFormulaRendererBrowser, renderFormulaImage } = await import('./wechat/render-formula-images');
+    const formulaCacheDir = effectiveOptions.formulaCacheDir ?? path.join(process.cwd(), '.wechat-cache', 'formulas');
+    effectiveOptions.formulaCacheDir = formulaCacheDir;
+    effectiveOptions.formulaRenderer = (input) =>
+      renderFormulaImage({
+        ...input,
+        cacheDir: formulaCacheDir,
+      });
+    closeWechatRenderer = closeFormulaRendererBrowser;
+  }
+
+  const processor = unified()
     .use(remarkParse)
     .use(remarkGfm)
     .use(remarkMath)
-    .use(createTocPlugin(toc))
-    .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeRaw)
-    .use(rehypeKatex)
-    .use(rehypeHighlight, {
-      ignoreMissing: true,
-      plainText: ['txt', 'text'],
-    })
-    .use(rehypeStringify)
-    .process(processedMarkdown);
+    .use(createTocPlugin(toc));
 
-  return { html: String(file), toc };
+  if (effectiveOptions.target === 'wechat') {
+    processor.use(createWechatFormulaPlugin(effectiveOptions));
+  }
+
+  processor
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw);
+
+  if (effectiveOptions.target !== 'wechat') {
+    processor.use(rehypeKatex);
+  }
+
+  try {
+    const file = await processor
+      .use(rehypeHighlight, {
+        ignoreMissing: true,
+        plainText: ['txt', 'text'],
+      })
+      .use(rehypeStringify)
+      .process(processedMarkdown);
+
+    return { html: String(file), toc };
+  } finally {
+    if (closeWechatRenderer) {
+      await closeWechatRenderer();
+    }
+  }
 }
 
 export async function buildPosts(postsDir: string): Promise<BuildPost[]> {
